@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DatabaseUtil {
 
-    private static String dbURL = "jdbc:mysql://localhost:8080/tour_operator";
+    private static String dbURL = "jdbc:mysql://localhost:3306/tour_operator";
     private static String user = "root";
     private static String password = "";
 
@@ -17,8 +17,7 @@ public class DatabaseUtil {
             connection = DriverManager.getConnection(dbURL, user, password);
             return connection;
         } catch (SQLException e) {
+            return null;
         }
-
-        return null;
     }
 }
