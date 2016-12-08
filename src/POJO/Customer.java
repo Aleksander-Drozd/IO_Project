@@ -5,16 +5,22 @@ public class Customer {
 
     private String firstName;
     private String lastName;
+    private String sex;
     private String city;
     private String street;
     private String postCode;
     private String phoneNumber;
+
+    public Customer(){
+
+    }
 
     public Customer(String forTests) {
         firstName = "Jan";
         lastName = "Panda";
         city = "Wroclove <3";
         street = "Mikolaja";
+        sex = "male";
         postCode = "99-333";
         phoneNumber = "332908123";
     }
@@ -37,6 +43,14 @@ public class Customer {
 
     public String getCity() {
         return city;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public void setCity(String city) {
