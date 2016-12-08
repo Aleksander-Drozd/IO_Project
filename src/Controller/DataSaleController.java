@@ -55,6 +55,9 @@ public class DataSaleController {
             customer.setSex("female");
 
         sale.setQuantity(Integer.parseInt(quantityTextField.getText()));
+
+        //Todo check if data is correct
+        ((Stage)firstNameTextField.getScene().getWindow()).close();
     }
 
     @FXML
