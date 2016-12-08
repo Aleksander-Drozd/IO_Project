@@ -1,3 +1,4 @@
+import POJO.Employee;
 import Util.DatabaseUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,23 +15,36 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        initLoginView(primaryStage);
+        Employee loggedEmployee = initLoginView();
+
+        if (loggedEmployee != null) {
+            System.out.println("Zalogowano pomyslnie!");
+        } else {
+            System.out.println("Blad logowania!");
+        }
+
     }
 
-    private void initLoginView(Stage primaryStage) {
+    private Employee initLoginView() {
         try {
+            Stage loginStage = new Stage();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("View/LoginView.fxml"));
 
             BorderPane layout = (BorderPane) loader.load();
 
             Scene scene = new Scene(layout);
+            LoginController loginController = loader.getController();
+            loginController.setStage(loginStage);
 
-            primaryStage.setTitle("Hello World");
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            loginStage.setTitle("Logowanie");
+            loginStage.setScene(scene);
+            loginStage.showAndWait();
+
+            return loginController.getEmployee();
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
     }
 
