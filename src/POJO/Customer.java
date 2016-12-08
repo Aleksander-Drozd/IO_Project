@@ -10,6 +10,15 @@ public class Customer {
     private String postCode;
     private String phoneNumber;
 
+    public Customer(String forTests) {
+        firstName = "Jan";
+        lastName = "Panda";
+        city = "Wroclove <3";
+        street = "Mikolaja";
+        postCode = "99-333";
+        phoneNumber = "332908123";
+    }
+
     public String getFirstName() {
         return firstName;
     }
