@@ -11,13 +11,8 @@ import java.sql.Statement;
 public class EmployeeDAO {
 
     private Connection connection;
+
     public EmployeeDAO() {
-        //zeby dzialalo musisz podpiac driver w File|Project Structure|Modules|+ i wybierasz jara z folderu lib
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
         connection = DatabaseUtil.getConnection();
     }
 
@@ -37,7 +32,6 @@ public class EmployeeDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //TODO decoding resultSet
 
         return employee;
     }
@@ -47,7 +41,6 @@ public class EmployeeDAO {
         ResultSet resultSet;
 
         try {
-            //TODO fix connection
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
         } catch (SQLException e) {

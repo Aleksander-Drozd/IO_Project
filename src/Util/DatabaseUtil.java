@@ -17,9 +17,12 @@ public class DatabaseUtil {
            return connection;
         } else {
             try {
+                Class.forName("com.mysql.jdbc.Driver");
                 connection = DriverManager.getConnection(dbURL, user, password);
                 return connection;
             } catch (SQLException e) {
+                return null;
+            } catch (ClassNotFoundException e) {
                 return null;
             }
         }
