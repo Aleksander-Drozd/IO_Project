@@ -34,5 +34,9 @@ public class DataSaleController {
     @FXML
     private Button cancelButton;
 
+    public DataSaleController(){
+
+    }
+
 
 }
