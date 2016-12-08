@@ -11,6 +11,14 @@ public class Sale {
     private Date saleDate;
     private int quantity;
 
+    public Sale(String forTests) {
+        employee = new Employee();
+        trip = new Trip();
+        customer = new Customer();
+        saleDate = new Date();
+        quantity = 7;
+    }
+
     public String getLastName() {
         return customer.getLastName();
     }
