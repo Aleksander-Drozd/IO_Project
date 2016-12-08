@@ -11,6 +11,14 @@ public class Trip {
     private float price;
     private Date date;
 
+    public Trip(String forTests) {
+        title = "Super wycieczka";
+        desciption = "To jest naprawde super wycieczka";
+        days = 3;
+        price = 197.22f;
+        date = new Date();
+    }
+
     public String getTitle() {
         return title;
     }
