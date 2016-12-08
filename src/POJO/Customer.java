@@ -1,6 +1,5 @@
 package POJO;
 
-
 public class Customer {
 
     private String firstName;

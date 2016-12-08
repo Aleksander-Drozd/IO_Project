@@ -88,8 +88,8 @@
             </GridPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="addButton" mnemonicParsing="false" text="Dodaj" />
-                  <Button fx:id="cancelButton" mnemonicParsing="false" text="Anuluj">
+                  <Button mnemonicParsing="false" onAction="#handleAddButton" text="Dodaj" />
+                  <Button mnemonicParsing="false" onAction="#handleCancelButton" text="Anuluj">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
