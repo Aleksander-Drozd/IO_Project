@@ -7,6 +7,9 @@ public class Employee {
     private String lastName;
     private String position;
 
+    public Employee() {
+    }
+
     public Employee(String forTests) {
         id = 5;
         firstName = "Marek";

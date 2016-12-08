@@ -1,10 +1,15 @@
 package Controller;
 
+import Model.SaleModel;
+import POJO.Sale;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,7 +17,13 @@ import java.util.ResourceBundle;
 public class SalesmanController implements Initializable {
 
     @FXML
-    protected TableView salesTableView;
+    protected TableView<Sale> salesTableView;
+    @FXML
+    protected TableColumn<Sale, String> lastNameTableColumn;
+    @FXML
+    protected TableColumn<Sale, String> tripTitleTableColumn;
+    @FXML
+    protected TableColumn<Sale, String> dateTableColumn;
     @FXML
     protected Label salesmanLabel;
     @FXML
@@ -30,7 +41,7 @@ public class SalesmanController implements Initializable {
     @FXML
     protected Label tripTitleLabel;
     @FXML
-    protected TextArea tripDescriptonTextArea;
+    protected TextArea tripDescriptionTextArea;
     @FXML
     protected Label tripDateLabel;
     @FXML
@@ -42,11 +53,21 @@ public class SalesmanController implements Initializable {
     @FXML
     protected Label saleCostLabel;
 
-    protected ViewSalesController viewSalesController;
-    protected DataSaleController dataSaleController;
+    protected SaleModel saleModel;
+
+    public SalesmanController() {
+        saleModel = new SaleModel();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<Sale> salesObservableList = saleModel.getSalesObservableList();
+
+        salesTableView.setItems(salesObservableList);
+
+        lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        tripTitleTableColumn.setCellValueFactory(new PropertyValueFactory<>("tripTitle"));
+        dateTableColumn.setCellValueFactory(new PropertyValueFactory<>("saleDate"));
 
     }
 }

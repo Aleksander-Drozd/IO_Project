@@ -11,10 +11,13 @@ public class Sale {
     private Date saleDate;
     private int quantity;
 
+    private String lastName;
+    private String tripTitle;
+
     public Sale(String forTests) {
-        employee = new Employee();
-        trip = new Trip();
-        customer = new Customer();
+        employee = new Employee("");
+        trip = new Trip("");
+        customer = new Customer("");
         saleDate = new Date();
         quantity = 7;
     }
@@ -29,18 +32,6 @@ public class Sale {
 
     public String getSaleDate() {
         return saleDate.toString();
-    }
-
-    public void setLastName(String lastName) {
-        customer.setLastName(lastName);
-    }
-
-    public void setTripTitle(String tripTitle) {
-        trip.setTitle(tripTitle);
-    }
-
-    public void setSaleDate() {
-        //TODO Convert String -> Date
     }
 
 }

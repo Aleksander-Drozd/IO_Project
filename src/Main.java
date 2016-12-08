@@ -1,3 +1,4 @@
+import Controller.SalesmanController;
 import POJO.Employee;
 import Util.DatabaseUtil;
 import javafx.application.Application;
@@ -18,10 +19,12 @@ public class Main extends Application {
         Employee loggedEmployee = initLoginView();
 
         if (loggedEmployee != null) {
-            System.out.println("Zalogowano pomyslnie!");
+            initSalesmanView(loggedEmployee, primaryStage);
         } else {
             System.out.println("Blad logowania!");
         }
+
+
 
     }
 
@@ -45,6 +48,24 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    private void initSalesmanView(Employee loggedEmployee, Stage primaryStage) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("View/SalesmanView.fxml"));
+
+            BorderPane layout = (BorderPane) loader.load();
+
+            Scene scene = new Scene(layout);
+            SalesmanController loginController = loader.getController();
+
+            primaryStage.setTitle("Sprzedawca");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
