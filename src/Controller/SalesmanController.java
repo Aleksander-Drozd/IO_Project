@@ -70,4 +70,14 @@ public class SalesmanController implements Initializable {
         dateTableColumn.setCellValueFactory(new PropertyValueFactory<>("saleDate"));
 
     }
+
+    @FXML
+    private void handleButtonEditSale() {
+        System.out.println("Edytuj sprzedaz");
+    }
+
+    @FXML
+    private void handleButtonAddSale() {
+        System.out.println("Dodaj nowa sprzedaz");
+    }
 }

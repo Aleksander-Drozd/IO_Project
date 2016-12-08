@@ -20,9 +20,7 @@ public class DatabaseUtil {
                 Class.forName("com.mysql.jdbc.Driver");
                 connection = DriverManager.getConnection(dbURL, user, password);
                 return connection;
-            } catch (SQLException e) {
-                return null;
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 return null;
             }
         }
