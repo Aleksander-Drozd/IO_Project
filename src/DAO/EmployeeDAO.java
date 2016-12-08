@@ -20,10 +20,9 @@ public class EmployeeDAO {
         Employee employee = null;
         ResultSet resultSet;
 
-        //TODO make query
+        //TODO Mby fun for this?
         String SQL = "SELECT * FROM employee;";
 
-        //empty resultset, dunno why
         resultSet = runStatement(SQL);
         try {
             while (resultSet.next()) {
@@ -49,5 +48,11 @@ public class EmployeeDAO {
         }
 
         return resultSet;
+    }
+
+    private Employee createEmployee(ResultSet resultSet) {
+        Employee employee = new Employee();
+
+        return employee;
     }
 }
