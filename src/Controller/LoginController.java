@@ -15,6 +15,7 @@ public class LoginController {
     private PasswordField passwordField;
 
     private LoginModel loginModel;
+    private Employee employee;
 
     public LoginController() {
         loginModel = new LoginModel();
@@ -22,13 +23,13 @@ public class LoginController {
 
     @FXML
     private void handleButtonLogin() {
-        Employee employee = loginModel.getEmployee(loginTextField.getText(), passwordField.getText());
-        System.out.println("Zalogowano!");
+        employee = loginModel.getEmployee(loginTextField.getText(), passwordField.getText());
+        //TODO information about login
     }
 
     @FXML
     private void handleButtonCancel() {
-        System.out.println("Zakonczono!");
+        //TODO close stage
     }
 
 

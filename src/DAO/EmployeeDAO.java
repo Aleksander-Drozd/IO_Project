@@ -21,12 +21,12 @@ public class EmployeeDAO {
         ResultSet resultSet;
 
         //TODO Mby fun for this?
-        String SQL = "SELECT * FROM employee;";
+        String SQL = "SELECT id, first_name, last_name, position FROM employee WHERE login='" + login + "' AND password='" + password + "';";
 
         resultSet = runStatement(SQL);
         try {
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("last_name"));
+            if (resultSet.next()) {
+                employee = createEmployee(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -50,8 +50,13 @@ public class EmployeeDAO {
         return resultSet;
     }
 
-    private Employee createEmployee(ResultSet resultSet) {
+    private Employee createEmployee(ResultSet resultSet) throws SQLException {
         Employee employee = new Employee();
+
+        employee.setId(resultSet.getInt("id"));
+        employee.setFirstName(resultSet.getString("first_name"));
+        employee.setLastName(resultSet.getString("last_name"));
+        employee.setPosition(resultSet.getString("position"));
 
         return employee;
     }
