@@ -68,7 +68,6 @@ public class SalesmanController implements Initializable {
         lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         tripTitleTableColumn.setCellValueFactory(new PropertyValueFactory<>("tripTitle"));
         dateTableColumn.setCellValueFactory(new PropertyValueFactory<>("saleDate"));
-
     }
 
     @FXML

@@ -5,6 +5,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 
 public class DataSaleController {
 
@@ -28,6 +29,10 @@ public class DataSaleController {
     private ComboBox tripComboBox;
     @FXML
     private TextField quantityTextField;
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button cancelButton;
 
-    
+
 }
