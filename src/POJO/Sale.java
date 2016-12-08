@@ -14,6 +14,10 @@ public class Sale {
     private String lastName;
     private String tripTitle;
 
+    public Sale(){
+
+    }
+
     public Sale(String forTests) {
         employee = new Employee("");
         trip = new Trip("");
@@ -22,8 +26,13 @@ public class Sale {
         quantity = 7;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public String getLastName() {
         return customer.getLastName();
+
     }
 
     public String getTripTitle() {
