@@ -7,6 +7,13 @@ public class Employee {
     private String lastName;
     private String position;
 
+    public Employee(String forTests) {
+        id = 5;
+        firstName = "Marek";
+        lastName = "Milkowski";
+        position = "kierownik";
+    }
+
     public int getId() {
         return id;
     }
