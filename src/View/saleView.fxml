@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DataSaleController">
    <center>
       <VBox BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -44,10 +44,10 @@
                   <Label text="Birth date" GridPane.rowIndex="3" />
                   <Label text="Sex" GridPane.rowIndex="2" />
                   <TextField fx:id="firstNameTextField" GridPane.columnIndex="1" />
-                  <TextField fx:id="LastNameextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="postCodeTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <TextField fx:id="cityTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <TextField fx:id="streetTextFIled" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <TextField fx:id="streetTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
                         <RadioButton fx:id="maleRadioButton" mnemonicParsing="false" selected="true" text="Male">
@@ -82,7 +82,7 @@
                   <Label text="Trip" />
                   <Label text="Quantity" GridPane.rowIndex="1" />
                   <ComboBox fx:id="tripComboBox" prefWidth="150.0" GridPane.columnIndex="1" />
-                  <TextField fx:id="quantityTextFIled" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="quantityTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>
