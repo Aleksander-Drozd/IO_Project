@@ -23,20 +23,20 @@ public class EmployeeDAO {
 
     public Employee getEmployee(String login, String password) {
         Employee employee = null;
-        ResultSet resultSut;
+        ResultSet resultSet;
 
         //TODO make query
-        String query = "select * from employee";
-        int a = 0;
+        String SQL = "SELECT * FROM employee;";
 
         //empty resultset, dunno why
-        resultSut = runStatement(query);
+        resultSet = runStatement(SQL);
         try {
-            a = resultSut.getInt("position");
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("last_name"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(a);
         //TODO decoding resultSet
 
         return employee;

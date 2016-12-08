@@ -10,14 +10,18 @@ public class DatabaseUtil {
     private static String user = "root";
     private static String password = "";
 
-    public static Connection getConnection(){
-        Connection connection;
+    private static Connection connection = null;
 
-        try {
-            connection = DriverManager.getConnection(dbURL, user, password);
-            return connection;
-        } catch (SQLException e) {
-            return null;
+    public static Connection getConnection(){
+        if ( connection != null ) {
+           return connection;
+        } else {
+            try {
+                connection = DriverManager.getConnection(dbURL, user, password);
+                return connection;
+            } catch (SQLException e) {
+                return null;
+            }
         }
     }
 }
