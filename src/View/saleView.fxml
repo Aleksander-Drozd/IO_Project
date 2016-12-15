@@ -37,13 +37,13 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label alignment="CENTER" text="FIrst name" />
-                  <Label text="Street" GridPane.rowIndex="6" />
-                  <Label text="Last name" GridPane.rowIndex="1" />
-                  <Label text="City" GridPane.rowIndex="5" />
-                  <Label text="Post code" GridPane.rowIndex="4" />
-                  <Label text="Birth date" GridPane.rowIndex="3" />
-                  <Label text="Sex" GridPane.rowIndex="2" />
+                  <Label alignment="CENTER" text="Imię" />
+                  <Label text="Ulica" GridPane.rowIndex="6" />
+                  <Label text="Nazwisko" GridPane.rowIndex="1" />
+                  <Label text="Miasto" GridPane.rowIndex="5" />
+                  <Label text="Kod pocztowy" GridPane.rowIndex="4" />
+                  <Label text="Data urodzenia" GridPane.rowIndex="3" />
+                  <Label text="Płeć" GridPane.rowIndex="2" />
                   <TextField fx:id="firstNameTextField" GridPane.columnIndex="1" />
                   <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="postCodeTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -51,12 +51,12 @@
                   <TextField fx:id="streetTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <RadioButton fx:id="maleRadioButton" mnemonicParsing="false" selected="true" text="Male">
+                        <RadioButton fx:id="maleRadioButton" mnemonicParsing="false" selected="true" text="Mężczyzna">
                            <padding>
                               <Insets top="5.0" />
                            </padding>
                         </RadioButton>
-                        <RadioButton fx:id="femaleRadioButton" mnemonicParsing="false" text="Female">
+                        <RadioButton fx:id="femaleRadioButton" mnemonicParsing="false" text="Kobieta">
                            <padding>
                               <Insets left="10.0" top="5.0" />
                            </padding>
@@ -80,8 +80,8 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Trip" />
-                  <Label text="Quantity" GridPane.rowIndex="1" />
+                  <Label text="Wycieczka" />
+                  <Label text="Ilość" GridPane.rowIndex="1" />
                   <ComboBox fx:id="tripComboBox" prefWidth="150.0" GridPane.columnIndex="1" />
                   <TextField fx:id="quantityTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
