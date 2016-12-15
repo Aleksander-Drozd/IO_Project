@@ -4,7 +4,7 @@ public class Customer {
 
     private String firstName;
     private String lastName;
-    private String sex;
+    private String gender;
     private String city;
     private String street;
     private String postCode;
@@ -19,7 +19,7 @@ public class Customer {
         lastName = "Panda";
         city = "Wroclove <3";
         street = "Mikolaja";
-        sex = "male";
+        gender = "male";
         postCode = "99-333";
         phoneNumber = "332908123";
     }
@@ -44,12 +44,12 @@ public class Customer {
         return city;
     }
 
-    public String getSex() {
-        return sex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public void setCity(String city) {

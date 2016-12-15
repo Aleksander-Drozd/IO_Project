@@ -7,7 +7,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class DataSaleController {
@@ -50,9 +49,9 @@ public class DataSaleController {
         customer.setStreet(streetTextField.getText());
 
         if(maleRadioButton.isSelected())
-            customer.setSex("male");
+            customer.setGender("male");
         else
-            customer.setSex("female");
+            customer.setGender("female");
 
         sale.setQuantity(Integer.parseInt(quantityTextField.getText()));
 
