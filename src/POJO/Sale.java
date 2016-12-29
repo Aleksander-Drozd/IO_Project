@@ -11,6 +11,7 @@ public class Sale {
     private Date saleDate;
     private int quantity;
 
+    //dafuq?
     private String lastName;
     private String tripTitle;
 
@@ -18,11 +19,44 @@ public class Sale {
 
     }
 
+    public Trip getTrip() {
+        return trip;
+    }
+
+    public void setTrip(Trip trip) {
+        this.trip = trip;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setSaleDate(Date saleDate) {
+        this.saleDate = saleDate;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setTripTitle(String tripTitle) {
+        this.tripTitle = tripTitle;
+    }
+
     public Sale(String forTests) {
         employee = new Employee("");
         trip = new Trip("");
         customer = new Customer("");
         saleDate = new Date();
+
         quantity = 7;
     }
 

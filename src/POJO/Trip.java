@@ -11,12 +11,21 @@ public class Trip {
     private float price;
     private Date date;
 
+    public Trip(){
+
+    }
+
     public Trip(String forTests) {
         title = "Super wycieczka";
         desciption = "To jest naprawde super wycieczka";
         days = 3;
         price = 197.22f;
         date = new Date();
+    }
+
+    @Override
+    public String toString() {
+        return  title;
     }
 
     public String getTitle() {

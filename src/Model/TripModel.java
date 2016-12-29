@@ -6,8 +6,15 @@ import POJO.Trip;
 
 public class TripModel {
 
-    private ObservableList<Trip> tripsObservableList;
+    //ToDo to mull over all this
+    private static ObservableList<Trip> tripsObservableList;
+    private static TripDAO tripDAO;
 
-    private TripDAO tripDAO;
+    public static ObservableList<Trip> getTrips(){
+        if(tripsObservableList == null)
+            tripsObservableList = TripDAO.getTrips();
+
+        return tripsObservableList;
+    }
 
 }

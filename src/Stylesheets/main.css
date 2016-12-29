@@ -1,0 +1,11 @@
+.textfield-error{
+    -fx-text-box-border: red ;
+    -fx-focus-color: red ;
+    -fx-color: red;
+}
+
+.date-picker-error{
+    -fx-focus-color: red ;
+    -fx-color: red;
+}
+
