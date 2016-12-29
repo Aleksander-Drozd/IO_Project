@@ -1,8 +1,6 @@
 package Util;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DatabaseUtil {
 
@@ -24,5 +22,20 @@ public class DatabaseUtil {
                 return null;
             }
         }
+    }
+
+    public static ResultSet runStatement(String query) {
+        Statement statement;
+        ResultSet resultSet;
+
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return resultSet;
     }
 }

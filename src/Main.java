@@ -23,9 +23,6 @@ public class Main extends Application {
         } else {
             System.out.println("Blad logowania!");
         }
-
-
-
     }
 
     private Employee initLoginView() {

@@ -11,7 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -88,7 +87,7 @@ public class SalesmanController implements Initializable {
         Parent root;
 
         try {
-            root = FXMLLoader.load(getClass().getResource("../View/saleView.fxml"));
+            root = FXMLLoader.load(getClass().getResource("../View/SaleView.fxml"));
 
             addSaleStage.setScene(new Scene(root));
             addSaleStage.initModality(Modality.APPLICATION_MODAL);
@@ -98,6 +97,5 @@ public class SalesmanController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

@@ -82,7 +82,7 @@
                <children>
                   <Label text="Wycieczka" />
                   <Label text="Ilość" GridPane.rowIndex="1" />
-                  <ComboBox fx:id="tripComboBox" prefWidth="150.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="tripComboBox" prefWidth="150.0" promptText="Wybierz wycieczkę" GridPane.columnIndex="1" />
                   <TextField fx:id="quantityTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                </children>
             </GridPane>

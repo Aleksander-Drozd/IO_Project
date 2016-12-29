@@ -23,7 +23,7 @@ public class EmployeeDAO {
         //TODO Mby fun for this?
         String SQL = "SELECT id, first_name, last_name, position FROM employee WHERE login='" + login + "' AND password='" + password + "';";
 
-        resultSet = runStatement(SQL);
+        resultSet = DatabaseUtil.runStatement(SQL);
         try {
             if (resultSet.next()) {
                 employee = createEmployee(resultSet);
@@ -33,21 +33,6 @@ public class EmployeeDAO {
         }
 
         return employee;
-    }
-
-    private ResultSet runStatement(String query) {
-        Statement statement;
-        ResultSet resultSet;
-
-        try {
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        return resultSet;
     }
 
     private Employee createEmployee(ResultSet resultSet) throws SQLException {

@@ -1,6 +1,5 @@
 package DAO;
 
-
 public class SaleDAO {
 
     private EmployeeDAO employeeDAO;
