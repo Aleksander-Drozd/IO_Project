@@ -10,23 +10,22 @@ public class DatabaseUtil {
 
     private static Connection connection = null;
 
-    public static Connection getConnection(){
-        if ( connection != null ) {
-           return connection;
-        } else {
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                connection = DriverManager.getConnection(dbURL, user, password);
-                return connection;
-            } catch (SQLException | ClassNotFoundException e) {
-                return null;
-            }
+    public static void setConnection(){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(dbURL, user, password);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
     public static ResultSet runStatement(String query) {
-        Statement statement;
+        Statement statement = null;
         ResultSet resultSet;
+
+        if (connection == null) {
+            setConnection();
+        }
 
         try {
             statement = connection.createStatement();

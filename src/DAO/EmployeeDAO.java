@@ -12,7 +12,7 @@ public class EmployeeDAO {
         Employee employee = null;
         ResultSet resultSet;
 
-        //TODO Mby fun for this?
+        //TODO Mby method for this?
         String SQL = "SELECT id, first_name, last_name, position FROM employee WHERE login='" + login + "' AND password='" + password + "';";
 
         resultSet = DatabaseUtil.runStatement(SQL);
