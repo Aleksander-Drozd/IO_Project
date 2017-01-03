@@ -8,12 +8,12 @@ public class Sale {
     private Employee employee;
     private Trip trip;
     private Customer customer;
-    private Date saleDate;
     private int quantity;
 
-    //dafuq?
+    // Data to TableView
     private String lastName;
     private String tripTitle;
+    private Date saleDate;
 
     public Sale(){
 

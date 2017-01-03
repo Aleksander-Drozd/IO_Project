@@ -5,18 +5,10 @@ import Util.DatabaseUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class TripDAO {
-
-    private Connection connection;
-
-    public TripDAO() {
-        connection  = DatabaseUtil.getConnection();
-    }
 
     public static ObservableList<Trip> getTrips(){
         ObservableList<Trip> tripObservableList = FXCollections.observableArrayList();

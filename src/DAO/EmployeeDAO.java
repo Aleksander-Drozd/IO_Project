@@ -3,18 +3,10 @@ package DAO;
 import POJO.Employee;
 import Util.DatabaseUtil;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class EmployeeDAO {
-
-    private Connection connection;
-
-    public EmployeeDAO() {
-        connection = DatabaseUtil.getConnection();
-    }
 
     public Employee getEmployee(String login, String password) {
         Employee employee = null;
