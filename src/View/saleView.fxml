@@ -65,7 +65,7 @@
                      </children>
                   </HBox>
                   <DatePicker fx:id="saleDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="Numer telfonu" GridPane.rowIndex="7" />
+                  <Label text="Numer telefonu" GridPane.rowIndex="7" />
                   <TextField fx:id="phoneNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                </children>
             </GridPane>

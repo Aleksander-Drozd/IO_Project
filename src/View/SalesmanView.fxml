@@ -159,7 +159,7 @@
                           </rowConstraints>
                            <children>
                               <Label fx:id="tripTitleLabel" text="Nazwa wycieczki" GridPane.halignment="CENTER" />
-                              <TextArea fx:id="tripDescriptonTextArea" editable="false" prefHeight="79.0" prefWidth="199.0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                              <TextArea fx:id="tripDescriptionTextArea" wrapText="true" editable="false" prefHeight="79.0" prefWidth="199.0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                               <Label text="Data wycieczki:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets right="5.0" />
@@ -180,12 +180,12 @@
                                     <Insets left="5.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label fx:id="tripPrizeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <Label fx:id="tripDaysLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <GridPane.margin>
                                     <Insets left="5.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label fx:id="tripDaysLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <Label fx:id="tripPrizeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <GridPane.margin>
                                     <Insets left="5.0" />
                                  </GridPane.margin>

@@ -6,7 +6,7 @@ import java.util.Date;
 public class Trip {
 
     private String title;
-    private String desciption;
+    private String description;
     private int days;
     private float price;
     private Date date;
@@ -17,7 +17,7 @@ public class Trip {
 
     public Trip(String forTests) {
         title = "Super wycieczka";
-        desciption = "To jest naprawde super wycieczka";
+        description = "To jest naprawde super wycieczka";
         days = 3;
         price = 197.22f;
         date = new Date();
@@ -36,12 +36,12 @@ public class Trip {
         this.title = title;
     }
 
-    public String getDesciption() {
-        return desciption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesciption(String desciption) {
-        this.desciption = desciption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getDays() {

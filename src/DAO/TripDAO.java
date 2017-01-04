@@ -32,7 +32,7 @@ public class TripDAO {
         Trip trip = new Trip();
 
         trip.setTitle(resultSet.getString("title"));
-        trip.setDesciption(resultSet.getString("description"));
+        trip.setDescription(resultSet.getString("description"));
         trip.setDays(resultSet.getInt("days"));
         trip.setPrice(resultSet.getFloat("price"));
 

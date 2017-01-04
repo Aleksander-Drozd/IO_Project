@@ -74,6 +74,32 @@ public class SalesmanController implements Initializable {
         lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         tripTitleTableColumn.setCellValueFactory(new PropertyValueFactory<>("tripTitle"));
         dateTableColumn.setCellValueFactory(new PropertyValueFactory<>("saleDate"));
+
+        salesTableView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showSaleDetails(newValue)
+        );
+    }
+
+    private void showSaleDetails(Sale sale) {
+
+        if (sale != null) {
+            firstNameLabel.setText(sale.getCustomer().getFirstName());
+            lastNameLabel.setText(sale.getCustomer().getLastName());
+            cityLabel.setText(sale.getCustomer().getCity());
+            streetLabel.setText(sale.getCustomer().getStreet());
+            postCodeLabel.setText(sale.getCustomer().getPostCode());
+            phoneNumberLabel.setText(sale.getCustomer().getPhoneNumber());
+            tripTitleLabel.setText(sale.getTrip().getTitle());
+            tripDescriptionTextArea.setText(sale.getTrip().getDescription());
+            tripDateLabel.setText(sale.getTrip().getDate().toString());
+            tripPrizeLabel.setText(sale.getTrip().getPrice() + " zl");
+            tripDaysLabel.setText(sale.getTrip().getDays() + "");
+            saleDateLabel.setText(sale.getSaleDate());
+            saleCostLabel.setText((sale.getQuantity() * sale.getTrip().getPrice())+ " zl");
+        } else {
+            System.out.print("Sale is null");
+        }
+
     }
 
     @FXML
