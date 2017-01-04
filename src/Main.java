@@ -56,7 +56,7 @@ public class Main extends Application {
             BorderPane layout = (BorderPane) loader.load();
 
             Scene scene = new Scene(layout);
-            SalesmanController loginController = loader.getController();
+            SalesmanController salesmanController = loader.getController();
 
             primaryStage.setTitle("Sprzedawca");
             primaryStage.setScene(scene);

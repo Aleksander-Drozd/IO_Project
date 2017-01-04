@@ -11,9 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -61,6 +63,8 @@ public class SalesmanController implements Initializable {
 
     protected SaleModel saleModel;
 
+    protected Sale chosenSale = null;
+
     public SalesmanController() {
         saleModel = new SaleModel();
     }
@@ -76,12 +80,17 @@ public class SalesmanController implements Initializable {
         dateTableColumn.setCellValueFactory(new PropertyValueFactory<>("saleDate"));
 
         salesTableView.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> showSaleDetails(newValue)
+                (observable, oldValue, newValue) -> {
+                    chosenSale = newValue;
+                    showSaleInfo(newValue);
+                }
         );
+
+        showSaleInfo(salesObservableList.get(0));
     }
 
-    private void showSaleDetails(Sale sale) {
-
+    private void showSaleInfo(Sale sale) {
+        // TODO refactor and fix else
         if (sale != null) {
             firstNameLabel.setText(sale.getCustomer().getFirstName());
             lastNameLabel.setText(sale.getCustomer().getLastName());
@@ -99,29 +108,45 @@ public class SalesmanController implements Initializable {
         } else {
             System.out.print("Sale is null");
         }
+    }
 
+    private Sale showEditSaleView(Sale sale){
+        Stage dataSaleStage = new Stage();
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../View/SaleView.fxml"));
+
+            BorderPane layout = (BorderPane) loader.load();
+
+            Scene scene = new Scene(layout);
+            DataSaleController dataSaleController = loader.getController();
+
+            dataSaleStage.setScene(scene);
+            dataSaleStage.initModality(Modality.APPLICATION_MODAL);
+            dataSaleStage.initOwner(addSaleButton.getScene().getWindow());
+            dataSaleStage.setTitle("Sprzedaz");
+
+            dataSaleController.setSale(sale);
+
+            dataSaleStage.showAndWait();
+
+            return dataSaleController.getSale();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     @FXML
     private void handleButtonEditSale() {
-        System.out.println("Edytuj sprzedaz");
+        Sale editedSale = showEditSaleView(chosenSale);
     }
 
     @FXML
     private void handleButtonAddSale() {
-        Stage addSaleStage = new Stage();
-        Parent root;
-
-        try {
-            root = FXMLLoader.load(getClass().getResource("../View/SaleView.fxml"));
-
-            addSaleStage.setScene(new Scene(root));
-            addSaleStage.initModality(Modality.APPLICATION_MODAL);
-            addSaleStage.initOwner(addSaleButton.getScene().getWindow());
-            addSaleStage.setTitle("Dodaj nowa sprzedaz");
-            addSaleStage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Sale newSale = showEditSaleView(null);
     }
+
 }

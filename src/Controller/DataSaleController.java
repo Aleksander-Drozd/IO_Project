@@ -45,6 +45,8 @@ public class DataSaleController implements Initializable{
     private ToggleGroup genderToggleGroup;
     private ArrayList<TextField> textFieldArrayList;
 
+    private Sale sale;
+
     public DataSaleController(){
         genderToggleGroup = new ToggleGroup();
         textFieldArrayList = new ArrayList<>();
@@ -123,6 +125,14 @@ public class DataSaleController implements Initializable{
         if(correctData){
             ((Stage)firstNameTextField.getScene().getWindow()).close();
         }
+    }
+
+    public void setSale(Sale sale) {
+        this.sale = sale;
+    }
+
+    public Sale getSale() {
+        return sale;
     }
 
     @FXML
