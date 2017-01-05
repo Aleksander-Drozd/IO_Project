@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.sql.Date;
@@ -66,8 +67,14 @@ public class DataSaleController implements Initializable{
         textFieldArrayList.add(phoneNumberTextField);
         textFieldArrayList.add(streetTextField);
         textFieldArrayList.add(quantityTextField);
+
+        maleRadioButton.setSelected(false);
+        femaleRadioButton.setSelected(false);
+
+        saleDatePicker.setValue(LocalDate.now());
     }
 
+    // TODO refactor - make function for create Sale object + function for check input data
     @FXML
     private void handleAddButton(){
         Sale sale = new Sale();
@@ -79,13 +86,13 @@ public class DataSaleController implements Initializable{
         customer.setPostCode(postCodeTextField.getText());
         customer.setCity(cityTextField.getText());
         customer.setStreet(streetTextField.getText());
-        customer.setPostCode(postCodeTextField.getText());
         customer.setPhoneNumber(phoneNumberTextField.getText());
 
-        if(maleRadioButton.isSelected())
+        if(maleRadioButton.isSelected()) {
             customer.setGender("male");
-        else
+        } else {
             customer.setGender("female");
+        }
 
         try{
             sale.setQuantity(Integer.parseInt(quantityTextField.getText()));
@@ -113,8 +120,7 @@ public class DataSaleController implements Initializable{
         if (tripComboBox.getValue() == null){
             correctData = false;
             tripComboBox.getStyleClass().add("textfield-error");
-        }
-        else{
+        } else{
             tripComboBox.getStyleClass().remove("textfield-error");
             sale.setTrip(tripComboBox.getValue());
         }
@@ -127,17 +133,52 @@ public class DataSaleController implements Initializable{
         }
     }
 
+    @FXML
+    private void handleCancelButton(){
+        ((Stage)firstNameTextField.getScene().getWindow()).close();
+    }
+
+    private void setSaleView(Sale sale) {
+        firstNameTextField.setText(sale.getCustomer().getFirstName());
+        lastNameTextField.setText(sale.getCustomer().getLastName());
+        postCodeTextField.setText(sale.getCustomer().getPostCode());
+        cityTextField.setText(sale.getCustomer().getCity());
+        streetTextField.setText(sale.getCustomer().getStreet());
+        postCodeTextField.setText(sale.getCustomer().getPostCode());
+        phoneNumberTextField.setText(sale.getCustomer().getPhoneNumber());
+
+        // set trip even when sale.getTrip() object is not inside tripComboBox (TripModel.getTrips())
+        tripComboBox.getSelectionModel().select(sale.getTrip());
+
+        switch (sale.getCustomer().getGender()) {
+            case "f":
+                femaleRadioButton.setSelected(true);
+                break;
+            case "m":
+                maleRadioButton.setSelected(true);
+                break;
+            default:
+                maleRadioButton.setSelected(false);
+                femaleRadioButton.setSelected(false);
+                break;
+        }
+
+        // TODO make Util Date to set own LocalDate format
+        saleDatePicker.setValue(LocalDate.now());
+
+        quantityTextField.setText(sale.getQuantity() + "");
+    }
+
     public void setSale(Sale sale) {
         this.sale = sale;
+
+        if (sale != null) {
+            setSaleView(sale);
+        }
     }
 
     public Sale getSale() {
         return sale;
-    }
-
-    @FXML
-    private void handleCancelButton(){
-        ((Stage)firstNameTextField.getScene().getWindow()).close();
     }
 
 }
