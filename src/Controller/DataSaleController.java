@@ -128,7 +128,6 @@ public class DataSaleController implements Initializable{
 
         sale.setCustomer(customer);
 
-        //sale object ready to return or pass
         if(correctData){
             ((Stage)firstNameTextField.getScene().getWindow()).close();
         }
