@@ -17,12 +17,15 @@ public class SaleModel {
     }
 
     public ObservableList<Sale> getSalesObservableList() {
-
         salesObservableList.add(new Sale(""));
         salesObservableList.add(new Sale(""));
         salesObservableList.add(new Sale(""));
 
         return salesObservableList;
+    }
+
+    public void addSale(Sale sale){
+        salesObservableList.add(sale);
     }
 
 }

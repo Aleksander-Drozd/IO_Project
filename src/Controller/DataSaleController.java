@@ -68,8 +68,9 @@ public class DataSaleController implements Initializable{
         textFieldArrayList.add(streetTextField);
         textFieldArrayList.add(quantityTextField);
 
-        maleRadioButton.setSelected(false);
-        femaleRadioButton.setSelected(false);
+        //y tho?
+        //maleRadioButton.setSelected(false);
+        //femaleRadioButton.setSelected(false);
 
         saleDatePicker.setValue(LocalDate.now());
     }
@@ -77,7 +78,7 @@ public class DataSaleController implements Initializable{
     // TODO refactor - make function for create Sale object + function for check input data
     @FXML
     private void handleAddButton(){
-        Sale sale = new Sale();
+        sale = new Sale();
         Customer customer = new Customer();
         boolean correctData = true;
 
@@ -135,6 +136,7 @@ public class DataSaleController implements Initializable{
 
     @FXML
     private void handleCancelButton(){
+        sale = null;
         ((Stage)firstNameTextField.getScene().getWindow()).close();
     }
 

@@ -38,5 +38,4 @@ public class TripDAO {
 
         return trip;
     }
-
 }

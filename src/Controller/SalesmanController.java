@@ -98,7 +98,7 @@ public class SalesmanController implements Initializable {
             phoneNumberLabel.setText(sale.getCustomer().getPhoneNumber());
             tripTitleLabel.setText(sale.getTrip().getTitle());
             tripDescriptionTextArea.setText(sale.getTrip().getDescription());
-            tripDateLabel.setText(sale.getTrip().getDate().toString());
+            tripDateLabel.setText(sale.getTrip().getDate().toString()); // <--- NullPointerException on newly added sale
             tripPrizeLabel.setText(sale.getTrip().getPrice() + " zl");
             tripDaysLabel.setText(sale.getTrip().getDays() + "");
             saleDateLabel.setText(sale.getSaleDate());
@@ -145,6 +145,9 @@ public class SalesmanController implements Initializable {
     @FXML
     private void handleButtonAddSale() {
         Sale newSale = showEditSaleView(null);
+
+        if (newSale != null)
+            saleModel.addSale(newSale);
     }
 
 }
