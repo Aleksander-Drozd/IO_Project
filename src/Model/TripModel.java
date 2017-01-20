@@ -17,4 +17,8 @@ public class TripModel {
         return tripsObservableList;
     }
 
+    public static void addTrip(Trip trip){
+        tripsObservableList.add(trip);
+    }
+
 }
