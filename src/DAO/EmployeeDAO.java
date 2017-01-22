@@ -27,7 +27,25 @@ public class EmployeeDAO {
         return employee;
     }
 
-    private Employee createEmployee(ResultSet resultSet) throws SQLException {
+    public static Employee getEmployee(int id) {
+        Employee employee = null;
+        ResultSet resultSet;
+
+        String query = "SELECT id, first_name, last_name, position FROM employee WHERE id='" + id + "';";
+
+        resultSet = DatabaseUtil.runStatement(query);
+        try {
+            if (resultSet.next()) {
+                employee = createEmployee(resultSet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return employee;
+    }
+
+    private static Employee createEmployee(ResultSet resultSet) throws SQLException {
         Employee employee = new Employee();
 
         employee.setId(resultSet.getInt("id"));
