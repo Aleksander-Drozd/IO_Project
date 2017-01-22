@@ -28,6 +28,24 @@ public class TripDAO {
         return tripObservableList;
     }
 
+    public static Trip getTrip(int id){
+        ResultSet resultSet;
+        Trip trip = null;
+
+        String query = "SELECT * FROM trips WHERE id='" + id + "';";
+
+        resultSet = DatabaseUtil.runStatement(query);
+        try {
+            if (resultSet.next()) {
+                trip = createTrip(resultSet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return trip;
+    }
+
     private static Trip createTrip(ResultSet resultSet) throws SQLException{
         Trip trip = new Trip();
 
@@ -35,6 +53,7 @@ public class TripDAO {
         trip.setDescription(resultSet.getString("description"));
         trip.setDays(resultSet.getInt("days"));
         trip.setPrice(resultSet.getFloat("price"));
+        trip.setDate(resultSet.getDate("date"));
 
         return trip;
     }
