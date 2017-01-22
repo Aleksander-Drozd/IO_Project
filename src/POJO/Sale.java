@@ -1,6 +1,5 @@
 package POJO;
 
-
 import java.util.Date;
 
 public class Sale {
@@ -21,6 +20,10 @@ public class Sale {
 
     public Trip getTrip() {
         return trip;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public void setTrip(Trip trip) {
@@ -76,5 +79,4 @@ public class Sale {
     public String getSaleDate() {
         return saleDate.toString();
     }
-
 }

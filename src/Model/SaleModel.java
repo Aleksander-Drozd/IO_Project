@@ -17,9 +17,8 @@ public class SaleModel {
     }
 
     public ObservableList<Sale> getSalesObservableList() {
-        salesObservableList.add(new Sale(""));
-        salesObservableList.add(new Sale(""));
-        salesObservableList.add(new Sale(""));
+        if (salesObservableList.size() == 0)
+            salesObservableList = SaleDAO.getSales();
 
         return salesObservableList;
     }
