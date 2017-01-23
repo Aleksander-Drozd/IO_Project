@@ -18,12 +18,16 @@ public class Sale {
 
     }
 
-    public Trip getTrip() {
-        return trip;
+    public Employee getEmployee() {
+        return employee;
     }
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public Trip getTrip() {
+        return trip;
     }
 
     public void setTrip(Trip trip) {
@@ -69,7 +73,6 @@ public class Sale {
 
     public String getLastName() {
         return customer.getLastName();
-
     }
 
     public String getTripTitle() {

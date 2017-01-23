@@ -21,7 +21,7 @@ public class SaleDAO {
         ObservableList<Sale> salesObservableList = FXCollections.observableArrayList();
         ResultSet resultSet;
 
-        String query = "SELECT * FROM sales";
+        String query = "SELECT * FROM sales WHERE employee_id=" + EmployeeDAO.getLoggedEmployee().getId() + ";";
 
         resultSet = DatabaseUtil.runStatement(query);
         try {
@@ -44,7 +44,7 @@ public class SaleDAO {
         tripId = resultSet.getInt("trip_id");
         customerId = resultSet.getInt("customer_id");
 
-        Employee employee = EmployeeDAO.getEmployee(employeeId);
+        Employee employee = EmployeeDAO.getLoggedEmployee();
         Trip trip = TripDAO.getTrip(tripId);
         Customer customer = CustomerDAO.getCustomer(customerId);
 

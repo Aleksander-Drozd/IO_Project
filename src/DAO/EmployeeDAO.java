@@ -27,24 +27,6 @@ public class EmployeeDAO {
         return loggedEmployee;
     }
 
-    public static Employee getEmployee(int id) {
-        Employee employee = null;
-        ResultSet resultSet;
-
-        String query = "SELECT id, first_name, last_name, position FROM employee WHERE id='" + id + "';";
-
-        resultSet = DatabaseUtil.runStatement(query);
-        try {
-            if (resultSet.next()) {
-                employee = createEmployee(resultSet);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return employee;
-    }
-
     public static Employee getLoggedEmployee(){
         return loggedEmployee;
     }
