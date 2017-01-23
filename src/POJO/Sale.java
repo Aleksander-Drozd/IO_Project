@@ -4,6 +4,8 @@ import java.util.Date;
 
 public class Sale {
 
+    private int saleId;
+
     private Employee employee;
     private Trip trip;
     private Customer customer;
@@ -16,6 +18,14 @@ public class Sale {
 
     public Sale(){
 
+    }
+
+    public int getSaleId() {
+        return saleId;
+    }
+
+    public void setSaleId(int saleId) {
+        this.saleId = saleId;
     }
 
     public Employee getEmployee() {

@@ -52,6 +52,7 @@ public class SaleDAO {
         sale.setTrip(trip);
         sale.setCustomer(customer);
 
+        sale.setSaleId(resultSet.getInt("id"));
         sale.setQuantity(resultSet.getInt("quantity"));
         sale.setLastName(customer.getLastName());
         sale.setTripTitle(trip.getTitle());
@@ -106,5 +107,12 @@ public class SaleDAO {
 
 
         return true;
+    }
+
+    public static boolean updateSale(Sale sale) {
+        //TODO Add query to update sale - WHERE sale.saleId
+        System.out.println("DAO rade hehe");
+
+        return false;
     }
 }

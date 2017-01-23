@@ -115,7 +115,7 @@ public class SalesmanController implements Initializable {
         }
     }
 
-    private Sale showEditSaleView(Sale sale){
+    private Sale showSaleView(Sale sale){
         Stage dataSaleStage = new Stage();
 
         try {
@@ -146,12 +146,16 @@ public class SalesmanController implements Initializable {
 
     @FXML
     private void handleButtonEditSale() {
-        Sale editedSale = showEditSaleView(chosenSale);
+        Sale editedSale = showSaleView(chosenSale);
+
+        if (editedSale != null) {
+            saleModel.updateSale(editedSale);
+        }
     }
 
     @FXML
     private void handleButtonAddSale() {
-        Sale newSale = showEditSaleView(null);
+        Sale newSale = showSaleView(null);
 
         if (newSale != null)
             saleModel.addSale(newSale);

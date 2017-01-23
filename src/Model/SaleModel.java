@@ -25,8 +25,15 @@ public class SaleModel {
     }
 
     public void addSale(Sale sale){
-        if (SaleDAO.addSale(sale))
+        if (SaleDAO.addSale(sale)) {
             salesObservableList.add(sale);
+        } else {
+            //TODO Show error status
+        }
     }
 
+    public void updateSale(Sale sale) {
+        SaleDAO.updateSale(sale);
+        //TODO Show error status
+    }
 }
