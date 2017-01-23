@@ -1,6 +1,8 @@
 package Controller;
 
+import DAO.EmployeeDAO;
 import Model.SaleModel;
+import POJO.Employee;
 import POJO.Sale;
 
 import javafx.collections.ObservableList;
@@ -70,6 +72,9 @@ public class SalesmanController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<Sale> salesObservableList = saleModel.getSalesObservableList();
+
+        Employee loggedEmployee = EmployeeDAO.getLoggedEmployee();
+        salesmanLabel.setText(loggedEmployee.getLastName() + " " + loggedEmployee.getFirstName());
 
         salesTableView.setItems(salesObservableList);
 
