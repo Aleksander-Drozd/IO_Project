@@ -64,10 +64,11 @@ public class SaleDAO {
         int gender, customerId;
         Customer customer = sale.getCustomer();
 
-        if (customer.getGender().equals("male"))
+        if (customer.getGender().equals("male")) {
             gender = 1;
-        else
+        } else {
             gender = 0;
+        }
 
         String insertCustomerQuery = "INSERT INTO customers (first_name, last_name, gender, city, street, post_code, phone_number)" + "VALUES ('" +
                 customer.getFirstName() + "', '" +
@@ -78,20 +79,31 @@ public class SaleDAO {
                 customer.getPostCode() + "', '" +
                 customer.getPhoneNumber() + "');";
 
-        customerId = DatabaseUtil.update(insertCustomerQuery, DatabaseUtil.START_TRANSACTION);
+        try {
+            DatabaseUtil.startTransaction();
 
-        if (customerId == -1)
-            return false;
+            customerId = DatabaseUtil.update(insertCustomerQuery);
 
-        String insertSaleQuery = "INSERT INTO sales (employee_id, trip_id, customer_id, quantity, date) VALUES ('" +
-                EmployeeDAO.getLoggedEmployee().getId() + "', '" +
-                sale.getTrip().getId() + "', '" +
-                customerId + "', '" +
-                sale.getQuantity() + "', '" +
-                sale.getSaleDate() + "');";
+            if (customerId == DatabaseUtil.ERROR) {
+                throw new SQLException();
+            }
 
-        if (DatabaseUtil.update(insertSaleQuery, DatabaseUtil.END_TRANSACTION) == -1)
-            return false;
+            String insertSaleQuery = "INSERT INTO sales (employee_id, trip_id, customer_id, quantity, date) VALUES ('" +
+                    EmployeeDAO.getLoggedEmployee().getId() + "', '" +
+                    sale.getTrip().getId() + "', '" +
+                    customerId + "', '" +
+                    sale.getQuantity() + "', '" +
+                    sale.getSaleDate() + "');";
+
+            if (DatabaseUtil.update(insertSaleQuery) == DatabaseUtil.ERROR) {
+                throw new SQLException();
+            }
+
+            DatabaseUtil.endTransaction();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
 
         return true;
     }
