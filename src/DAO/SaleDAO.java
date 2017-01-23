@@ -111,8 +111,7 @@ public class SaleDAO {
 
     public static boolean updateSale(Sale sale) {
         //TODO Add query to update sale - WHERE sale.saleId
-        System.out.println("DAO rade hehe");
 
-        return false;
+        return true;
     }
 }

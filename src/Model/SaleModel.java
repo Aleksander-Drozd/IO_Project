@@ -33,7 +33,11 @@ public class SaleModel {
     }
 
     public void updateSale(Sale sale) {
-        SaleDAO.updateSale(sale);
-        //TODO Show error status
+        if(SaleDAO.updateSale(sale)) {
+            salesObservableList.removeIf((gettedSale) -> gettedSale.getSaleId() == sale.getSaleId());
+            salesObservableList.add(sale);
+        } else {
+            //TODO Show error status
+        }
     }
 }

@@ -78,7 +78,10 @@ public class DataSaleController implements Initializable{
     // TODO refactor - make function for create Sale object + function for check input data
     @FXML
     private void handleAddButton(){
+        //TODO make sth better to create or not new instance of Sale class - need to remember sale id
+        int saleId = sale != null ? sale.getSaleId() : -1;
         sale = new Sale();
+        sale.setSaleId(saleId);
         Customer customer = new Customer();
         boolean correctData = true;
 
