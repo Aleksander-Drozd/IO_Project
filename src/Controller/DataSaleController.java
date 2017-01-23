@@ -148,7 +148,7 @@ public class DataSaleController implements Initializable{
         postCodeTextField.setText(sale.getCustomer().getPostCode());
         phoneNumberTextField.setText(sale.getCustomer().getPhoneNumber());
 
-        // set trip even when sale.getTrip() object is not inside tripComboBox (TripModel.getTrips())
+        // This code set trip even when sale.getTrip() object is not inside tripComboBox (TripModel.getTrips())
         tripComboBox.getSelectionModel().select(sale.getTrip());
 
         switch (sale.getCustomer().getGender()) {

@@ -84,7 +84,9 @@ public class SalesmanController implements Initializable {
                 }
         );
 
-        showSaleInfo(salesObservableList.get(0));
+        if (salesObservableList.size() > 0) {
+            showSaleInfo(salesObservableList.get(0));
+        }
     }
 
     private void showSaleInfo(Sale sale) {
