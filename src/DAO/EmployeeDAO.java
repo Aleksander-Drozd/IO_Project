@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class EmployeeDAO {
+    private static Employee loggedEmployee = null;
 
-    public Employee getEmployee(String login, String password) {
-        Employee employee = null;
+    public static Employee getEmployee(String login, String password) {
         ResultSet resultSet;
 
         //TODO Mby method for this?
@@ -18,13 +18,13 @@ public class EmployeeDAO {
         resultSet = DatabaseUtil.runStatement(SQL);
         try {
             if (resultSet.next()) {
-                employee = createEmployee(resultSet);
+                loggedEmployee = createEmployee(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return employee;
+        return loggedEmployee;
     }
 
     public static Employee getEmployee(int id) {
@@ -43,6 +43,10 @@ public class EmployeeDAO {
         }
 
         return employee;
+    }
+
+    public static Employee getLoggedEmployee(){
+        return loggedEmployee;
     }
 
     private static Employee createEmployee(ResultSet resultSet) throws SQLException {
