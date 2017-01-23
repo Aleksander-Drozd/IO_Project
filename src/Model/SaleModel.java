@@ -24,7 +24,8 @@ public class SaleModel {
     }
 
     public void addSale(Sale sale){
-        salesObservableList.add(sale);
+        if (SaleDAO.addSale(sale))
+            salesObservableList.add(sale);
     }
 
 }
