@@ -110,8 +110,47 @@ public class SaleDAO {
     }
 
     public static boolean updateSale(Sale sale) {
-        //TODO Add query to update sale - WHERE sale.saleId
+        //TODO Check query to update sale (WHERE sale.saleId) and add customerId attribute to customer object
 
+        int gender, customerId;
+        Customer customer = sale.getCustomer();
+
+        if (customer.getGender().equals("male")) {
+            gender = 1;
+        } else {
+            gender = 0;
+        }
+
+        String updateCustomerQuery = "UPDATE customers SET "
+                + "first_name = '" + customer.getFirstName() + "', "
+                + "last_name = '" + customer.getLastName() + "', "
+                + "gender = '" + gender + "', "
+                + "city = '" + customer.getCity() + "', "
+                + "street = '" + customer.getStreet() + "', "
+                + "post_code = '" + customer.getPostCode() + "', "
+                + "phone_number = '" + customer.getPhoneNumber() + "' ";
+                //+ "WHERE customer_id = '" + customer.getCustomerId() + "';";
+
+        String updateSaleQuery = "UPDATE sales SET "
+                + "employee_id = '" + EmployeeDAO.getLoggedEmployee().getId() + "', "
+                + "trip_id = '" + sale.getTrip().getId() + "', "
+                //+ "customer_id = '" + customer.getCustomerId() + "', "
+                + "quantity = '" + sale.getQuantity() + "', "
+                + "date = '" + sale.getSaleDate() + "' "
+                + "WHERE id = " + sale.getSaleId() + ";";
+
+        try {
+            DatabaseUtil.startTransaction();
+
+            if (DatabaseUtil.update(updateSaleQuery) == DatabaseUtil.ERROR || DatabaseUtil.update(updateCustomerQuery) == DatabaseUtil.ERROR) {
+                throw new SQLException();
+            }
+
+            DatabaseUtil.endTransaction();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return true;
     }
 }
