@@ -49,6 +49,7 @@ public class TripDAO {
     private static Trip createTrip(ResultSet resultSet) throws SQLException{
         Trip trip = new Trip();
 
+        trip.setId(resultSet.getInt("id"));
         trip.setTitle(resultSet.getString("title"));
         trip.setDescription(resultSet.getString("description"));
         trip.setDays(resultSet.getInt("days"));
