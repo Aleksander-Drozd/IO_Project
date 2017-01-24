@@ -1,13 +1,19 @@
+import DAO.TripDAO;
 import Model.TripModel;
 import POJO.Trip;
-import javafx.collections.ObservableList;
+import mockit.Mocked;
+import mockit.Verifications;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class TripModelTest {
+
     int beforeLength;
+
+    @Mocked
+    TripDAO tripDAO;
 
     @Before
     public void setUp(){
@@ -15,10 +21,20 @@ public class TripModelTest {
     }
 
     @Test
-    public void addTrip() throws Exception {
+    public void addTripLengthTest() throws Exception {
         TripModel.addTrip(new Trip());
-
         assertEquals(beforeLength + 1, TripModel.getTrips().size());
+    }
+
+    @Test
+    public void addTripDAOTest() throws Exception {
+        TripModel.getTrips();
+
+        new Verifications() {
+            {
+                TripDAO.getTrips();
+            }
+        };
     }
 
 }
