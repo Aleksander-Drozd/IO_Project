@@ -11,14 +11,17 @@ public class TripModel {
     private static TripDAO tripDAO;
 
     public static ObservableList<Trip> getTrips(){
-        if(tripsObservableList == null)
+        if(tripsObservableList == null) {
             tripsObservableList = TripDAO.getTrips();
+        }
 
         return tripsObservableList;
     }
 
     public static void addTrip(Trip trip){
         tripsObservableList.add(trip);
+
+        //TODO Add trip to Database
     }
 
 }
