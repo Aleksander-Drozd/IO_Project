@@ -28,7 +28,7 @@ public class SaleDAO {
             while (resultSet.next()) {
                 salesObservableList.add(createSale(resultSet));
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
 

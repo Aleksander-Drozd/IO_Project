@@ -20,7 +20,7 @@ public class EmployeeDAO {
             if (resultSet.next()) {
                 loggedEmployee = createEmployee(resultSet);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
 
