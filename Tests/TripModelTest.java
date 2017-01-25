@@ -17,6 +17,9 @@ public class TripModelTest {
     int beforeLength;
     TripModel tripModel;
 
+    @Mocked
+    TripDAO tripDAO;
+
     @Before
     public void setUp(){
         tripModel = new TripModel();
@@ -24,9 +27,15 @@ public class TripModelTest {
     }
 
     @Test
-    public void addTripLengthTest() throws Exception {
+    public void addTrip() throws Exception {
+        new MockUp<TripDAO>() {
+
+        };
+
         tripModel.addTrip(new Trip());
         assertEquals(beforeLength + 1, tripModel.getTrips().size());
     }
+
+
 
 }

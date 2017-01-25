@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CustomerDAO {
-    public static Customer getCustomer(int id) {
+    public Customer getCustomer(int id) {
         Customer customer = null;
         ResultSet resultSet;
 
@@ -25,7 +25,7 @@ public class CustomerDAO {
         return customer;
     }
 
-    private static Customer createCustomer(ResultSet resultSet) throws SQLException{
+    private Customer createCustomer(ResultSet resultSet) throws SQLException{
         Customer customer = new Customer();
         int gender;
 

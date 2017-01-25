@@ -17,11 +17,17 @@ public class SaleDAO {
     private TripDAO tripDAO;
     private CustomerDAO customerDAO;
 
-    public static ObservableList<Sale> getSales(){
+    public SaleDAO() {
+        employeeDAO = new EmployeeDAO();
+        tripDAO = new TripDAO();
+        customerDAO = new CustomerDAO();
+    }
+
+    public ObservableList<Sale> getSales(){
         ObservableList<Sale> salesObservableList = FXCollections.observableArrayList();
         ResultSet resultSet;
 
-        String query = "SELECT * FROM sales WHERE employee_id=" + EmployeeDAO.getLoggedEmployee().getId() + ";";
+        String query = "SELECT * FROM sales WHERE employee_id=" + employeeDAO.getLoggedEmployee().getId() + ";";
 
         resultSet = DatabaseUtil.runStatement(query);
         try {
@@ -35,7 +41,7 @@ public class SaleDAO {
         return salesObservableList;
     }
 
-    private static Sale createSale(ResultSet resultSet) throws SQLException{
+    private Sale createSale(ResultSet resultSet) throws SQLException{
         Sale sale = new Sale();
 
         int employeeId, tripId, customerId;
@@ -44,9 +50,9 @@ public class SaleDAO {
         tripId = resultSet.getInt("trip_id");
         customerId = resultSet.getInt("customer_id");
 
-        Employee employee = EmployeeDAO.getLoggedEmployee();
-        Trip trip = TripDAO.getTrip(tripId);
-        Customer customer = CustomerDAO.getCustomer(customerId);
+        Employee employee = employeeDAO.getLoggedEmployee();
+        Trip trip = tripDAO.getTrip(tripId);
+        Customer customer = customerDAO.getCustomer(customerId);
 
         sale.setEmployee(employee);
         sale.setTrip(trip);
@@ -61,7 +67,7 @@ public class SaleDAO {
         return sale;
     }
 
-    public static boolean addSale(Sale sale){
+    public boolean addSale(Sale sale){
         int gender, customerId;
 
         Customer customer = sale.getCustomer();
@@ -91,7 +97,7 @@ public class SaleDAO {
             }
 
             String insertSaleQuery = "INSERT INTO sales (employee_id, trip_id, customer_id, quantity, date) VALUES ('" +
-                    EmployeeDAO.getLoggedEmployee().getId() + "', '" +
+                    employeeDAO.getLoggedEmployee().getId() + "', '" +
                     sale.getTrip().getId() + "', '" +
                     customerId + "', '" +
                     sale.getQuantity() + "', '" +
@@ -111,7 +117,7 @@ public class SaleDAO {
         return true;
     }
 
-    public static boolean updateSale(Sale sale) {
+    public boolean updateSale(Sale sale) {
         //TODO Check query to update sale (WHERE sale.saleId) and add customerId attribute to customer object
 
         int gender, customerId;
@@ -134,7 +140,7 @@ public class SaleDAO {
                 //+ "WHERE customer_id = '" + customer.getCustomerId() + "';";
 
         String updateSaleQuery = "UPDATE sales SET "
-                + "employee_id = '" + EmployeeDAO.getLoggedEmployee().getId() + "', "
+                + "employee_id = '" + employeeDAO.getLoggedEmployee().getId() + "', "
                 + "trip_id = '" + sale.getTrip().getId() + "', "
                 //+ "customer_id = '" + customer.getCustomerId() + "', "
                 + "quantity = '" + sale.getQuantity() + "', "

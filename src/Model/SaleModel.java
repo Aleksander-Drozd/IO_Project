@@ -18,14 +18,14 @@ public class SaleModel {
 
     public ObservableList<Sale> getSalesObservableList() {
         if (salesObservableList.size() == 0) {
-            salesObservableList = SaleDAO.getSales();
+            salesObservableList = saleDAO.getSales();
         }
 
         return salesObservableList;
     }
 
     public void addSale(Sale sale){
-        if (SaleDAO.addSale(sale)) {
+        if (saleDAO.addSale(sale)) {
             salesObservableList.add(sale);
         } else {
             //TODO Show error status
@@ -33,7 +33,7 @@ public class SaleModel {
     }
 
     public void updateSale(Sale sale) {
-        if(SaleDAO.updateSale(sale)) {
+        if(saleDAO.updateSale(sale)) {
             salesObservableList.removeIf((gettedSale) -> gettedSale.getSaleId() == sale.getSaleId());
             salesObservableList.add(sale);
         } else {

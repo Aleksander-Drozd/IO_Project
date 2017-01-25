@@ -65,15 +65,18 @@ public class SalesmanController implements Initializable {
 
     protected Sale chosenSale = null;
 
+    protected EmployeeDAO employeeDAO;
+
     public SalesmanController() {
         saleModel = new SaleModel();
+        employeeDAO = new EmployeeDAO();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<Sale> salesObservableList = saleModel.getSalesObservableList();
 
-        Employee loggedEmployee = EmployeeDAO.getLoggedEmployee();
+        Employee loggedEmployee = employeeDAO.getLoggedEmployee();
         salesmanLabel.setText(loggedEmployee.getLastName() + " " + loggedEmployee.getFirstName());
 
         salesTableView.setItems(salesObservableList);

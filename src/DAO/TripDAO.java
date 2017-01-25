@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class TripDAO {
 
-    public static ObservableList<Trip> getTrips(){
+    public ObservableList<Trip> getTrips(){
         ObservableList<Trip> tripObservableList = FXCollections.observableArrayList();
         ResultSet resultSet;
 
@@ -28,7 +28,7 @@ public class TripDAO {
         return tripObservableList;
     }
 
-    public static Trip getTrip(int id){
+    public Trip getTrip(int id){
         ResultSet resultSet;
         Trip trip = null;
 
@@ -46,7 +46,7 @@ public class TripDAO {
         return trip;
     }
 
-    private static Trip createTrip(ResultSet resultSet) throws SQLException{
+    private Trip createTrip(ResultSet resultSet) throws SQLException{
         Trip trip = new Trip();
 
         trip.setId(resultSet.getInt("id"));

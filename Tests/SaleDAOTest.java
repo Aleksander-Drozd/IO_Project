@@ -20,6 +20,9 @@ import static org.junit.Assert.*;
 public class SaleDAOTest {
 
     EmployeeDAO employeeDAO;
+
+    SaleDAO saleDAO;
+
     Sale sale;
     Customer customer;
     Trip trip;
@@ -35,6 +38,8 @@ public class SaleDAOTest {
         sale.setCustomer(customer);
         sale.setTrip(trip);
         sale.setEmployee(employee);
+
+        saleDAO = new SaleDAO();
     }
 
     @Test
@@ -66,8 +71,8 @@ public class SaleDAOTest {
             }
         };
 
-        assertNotNull("Return ObservableList<Sale>", SaleDAO.getSales());
-        assertEquals("Size list should be 0", SaleDAO.getSales().size(), 0);
+        assertNotNull("Return ObservableList<Sale>", saleDAO.getSales());
+        assertEquals("Size list should be 0", saleDAO.getSales().size(), 0);
 
     }
 
@@ -100,9 +105,9 @@ public class SaleDAOTest {
             }
         };
 
-        int salesCount = SaleDAO.getSales().size();
-        assertTrue("Should return true", SaleDAO.addSale(sale));
-        assertEquals("Should add one sale",salesCount, SaleDAO.getSales().size());
+        int salesCount = saleDAO.getSales().size();
+        assertTrue("Should return true", saleDAO.addSale(sale));
+        assertEquals("Should add one sale",salesCount, saleDAO.getSales().size());
     }
 
 }
