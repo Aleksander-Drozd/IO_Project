@@ -18,4 +18,11 @@ public class StatisticModel {
     private SaleDAO saleDAO;
     private EmployeeDAO employeeDAO;
 
+    public StatisticModel() {
+        tripDAO = new TripDAO();
+        saleDAO = new SaleDAO();
+        employeeDAO = new EmployeeDAO();
+    }
+
+
 }

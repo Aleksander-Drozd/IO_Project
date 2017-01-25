@@ -7,10 +7,14 @@ import POJO.Trip;
 public class TripModel {
 
     //ToDo to mull over all this
-    private static ObservableList<Trip> tripsObservableList;
-    private static TripDAO tripDAO;
+    private ObservableList<Trip> tripsObservableList;
+    private TripDAO tripDAO;
 
-    public static ObservableList<Trip> getTrips(){
+    public TripModel() {
+        tripDAO = new TripDAO();
+    }
+
+    public ObservableList<Trip> getTrips(){
         if(tripsObservableList == null) {
             tripsObservableList = TripDAO.getTrips();
         }
@@ -18,7 +22,7 @@ public class TripModel {
         return tripsObservableList;
     }
 
-    public static void addTrip(Trip trip){
+    public void addTrip(Trip trip){
         tripsObservableList.add(trip);
 
         //TODO Add trip to Database

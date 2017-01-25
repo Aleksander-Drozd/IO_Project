@@ -15,16 +15,18 @@ import static org.junit.Assert.*;
 public class TripModelTest {
 
     int beforeLength;
+    TripModel tripModel;
 
     @Before
     public void setUp(){
-        beforeLength = TripModel.getTrips().size();
+        tripModel = new TripModel();
+        beforeLength = tripModel.getTrips().size();
     }
 
     @Test
     public void addTripLengthTest() throws Exception {
-        TripModel.addTrip(new Trip());
-        assertEquals(beforeLength + 1, TripModel.getTrips().size());
+        tripModel.addTrip(new Trip());
+        assertEquals(beforeLength + 1, tripModel.getTrips().size());
     }
 
 }

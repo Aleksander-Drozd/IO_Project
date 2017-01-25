@@ -47,10 +47,12 @@ public class DataSaleController implements Initializable{
     private ArrayList<TextField> textFieldArrayList;
 
     private Sale sale;
+    private TripModel tripModel;
 
     public DataSaleController(){
         genderToggleGroup = new ToggleGroup();
         textFieldArrayList = new ArrayList<>();
+        tripModel = new TripModel();
     }
 
     @Override
@@ -58,7 +60,7 @@ public class DataSaleController implements Initializable{
         femaleRadioButton.setToggleGroup(genderToggleGroup);
         maleRadioButton.setToggleGroup(genderToggleGroup);
 
-        tripComboBox.getItems().addAll(TripModel.getTrips());
+        tripComboBox.getItems().addAll(tripModel.getTrips());
 
         textFieldArrayList.add(firstNameTextField);
         textFieldArrayList.add(lastNameTextField);
