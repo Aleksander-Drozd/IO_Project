@@ -63,6 +63,7 @@ public class SaleDAO {
 
     public static boolean addSale(Sale sale){
         int gender, customerId;
+
         Customer customer = sale.getCustomer();
 
         if (customer.getGender().equals("male")) {
@@ -101,10 +102,11 @@ public class SaleDAO {
             }
 
             DatabaseUtil.endTransaction();
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
-        }
 
+            return false;
+        }
 
         return true;
     }

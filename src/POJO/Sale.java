@@ -17,7 +17,10 @@ public class Sale {
     private Date saleDate;
 
     public Sale(){
-
+        employee = new Employee("");
+        trip = new Trip("");
+        customer = new Customer("");
+        saleDate = new Date();
     }
 
     public int getSaleId() {
@@ -73,8 +76,6 @@ public class Sale {
         trip = new Trip("");
         customer = new Customer("");
         saleDate = new Date();
-
-        quantity = 7;
     }
 
     public void setQuantity(int quantity) {

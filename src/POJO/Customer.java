@@ -11,7 +11,13 @@ public class Customer {
     private String phoneNumber;
 
     public Customer(){
-
+        firstName = "";
+        lastName = "";
+        city = "";
+        street = "";
+        gender = "";
+        postCode = "";
+        phoneNumber = "";
     }
 
     public Customer(String forTests) {
