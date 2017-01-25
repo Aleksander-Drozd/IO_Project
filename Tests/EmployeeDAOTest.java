@@ -16,8 +16,8 @@ public class EmployeeDAOTest {
         Employee employee = employeeDAO.getEmployee("test", "test");
 
         assertNotEquals(null, employee);
-        assertEquals("test", employee.getFirstName());
-        assertEquals("test", employee.getLastName());
+        assertEquals("Piotr", employee.getFirstName());
+        assertEquals("Wlazły", employee.getLastName());
     }
 
 }
