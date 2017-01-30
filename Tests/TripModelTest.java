@@ -2,40 +2,36 @@ import DAO.TripDAO;
 import Model.TripModel;
 import POJO.Trip;
 import Util.DatabaseUtil;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import mockit.Mock;
-import mockit.MockUp;
-import mockit.Mocked;
-import mockit.Verifications;
+import mockit.*;
+import mockit.integration.junit4.JMockit;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+@RunWith(JMockit.class)
 public class TripModelTest {
 
     int beforeLength;
-    TripModel tripModel;
 
     @Mocked
     TripDAO tripDAO;
 
-    @Before
-    public void setUp(){
-        tripModel = new TripModel();
-        beforeLength = tripModel.getTrips().size();
+    @Test
+    public void addTrip() throws Exception {
+        TripModel tripModel = new TripModel();
+        assertTrue(tripModel.addTrip(new Trip()));
     }
 
     @Test
-    public void addTrip() throws Exception {
-        new MockUp<TripDAO>() {
+    public void getTripsTest() throws Exception {
+        TripModel tripModel = new TripModel();
+        assertNotNull("Should return ObservableList", tripModel.getTrips());
 
-        };
-
-        tripModel.addTrip(new Trip());
-        assertEquals(beforeLength + 1, tripModel.getTrips().size());
+        new Verifications(){{ tripDAO.getTrips(); times = 1; }};
     }
-
-
 
 }

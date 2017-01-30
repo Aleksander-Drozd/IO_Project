@@ -1,5 +1,6 @@
 package Model;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import DAO.TripDAO;
 import POJO.Trip;
@@ -12,20 +13,19 @@ public class TripModel {
 
     public TripModel() {
         tripDAO = new TripDAO();
+        tripsObservableList = FXCollections.observableArrayList();
     }
 
     public ObservableList<Trip> getTrips(){
-        if(tripsObservableList == null) {
-            tripsObservableList = tripDAO.getTrips();
-        }
+        tripsObservableList = tripDAO.getTrips();
 
         return tripsObservableList;
     }
 
-    public void addTrip(Trip trip){
+    public boolean addTrip(Trip trip){
         tripsObservableList.add(trip);
 
-        //TODO Add trip to Database
+        return true;
     }
 
 }
