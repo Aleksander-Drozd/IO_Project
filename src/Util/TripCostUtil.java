@@ -4,11 +4,11 @@ import POJO.Sale;
 
 public class TripCostUtil {
 
-    public static float getFinalCost(float price, int quantity) {
+    public float getFinalCost(float price, int quantity) {
         return price * quantity;
     }
 
-    public static float getFinalCost(Sale sale) {
+    public float getFinalCost(Sale sale) {
         Float cost = 0f;
 
         try {

@@ -17,7 +17,7 @@ public class TripModel {
     }
 
     public ObservableList<Trip> getTrips(){
-        tripsObservableList = tripDAO.getTrips();
+        //tripsObservableList = tripDAO.getTrips();
 
         return tripsObservableList;
     }

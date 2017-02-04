@@ -27,7 +27,7 @@ public class SaleDAO {
         ObservableList<Sale> salesObservableList = FXCollections.observableArrayList();
         ResultSet resultSet;
 
-        String query = "SELECT * FROM sales WHERE employee_id=" + employeeDAO.getLoggedEmployee().getId() + ";";
+        String query = "SELECT * FROM sales WHERE employee_id='" + employeeDAO.getLoggedEmployee().getId() + "';";
 
         resultSet = DatabaseUtil.runStatement(query);
         try {

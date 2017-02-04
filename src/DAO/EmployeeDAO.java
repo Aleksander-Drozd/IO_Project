@@ -7,10 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class EmployeeDAO {
-    private Employee loggedEmployee = null;
+    private static Employee loggedEmployee = null;
 
     public Employee getEmployee(String login, String password) {
         ResultSet resultSet;
+        Employee employee = null;
 
         //TODO Mby method for this?
         String SQL = "SELECT id, first_name, last_name, position FROM employee WHERE login='" + login + "' AND password='" + password + "';";
@@ -18,13 +19,15 @@ public class EmployeeDAO {
         resultSet = DatabaseUtil.runStatement(SQL);
         try {
             if (resultSet.next()) {
-                loggedEmployee = createEmployee(resultSet);
+                employee = createEmployee(resultSet);
+
+                loggedEmployee = employee;
             }
         } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         }
 
-        return loggedEmployee;
+        return employee;
     }
 
     public Employee getLoggedEmployee(){
