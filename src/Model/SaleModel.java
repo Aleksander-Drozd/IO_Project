@@ -34,7 +34,8 @@ public class SaleModel {
 
     public void updateSale(Sale sale) {
         if(saleDAO.updateSale(sale)) {
-            salesObservableList.removeIf((gettedSale) -> gettedSale.getSaleId() == sale.getSaleId());
+            //TODO Possible auto update SaleList
+            salesObservableList.removeIf((gotSale) -> gotSale.getSaleId() == sale.getSaleId());
             salesObservableList.add(sale);
         } else {
             //TODO Show error status

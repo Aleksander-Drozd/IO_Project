@@ -12,7 +12,7 @@ public class LoginModel {
     }
 
     public Employee getEmployee(String login, String password) {
-        return employeeDAO.getEmployee(login, password);
+        return employeeDAO.logEmployee(login, password);
     }
 
 }

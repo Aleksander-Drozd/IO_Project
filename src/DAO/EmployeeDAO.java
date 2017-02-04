@@ -7,9 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class EmployeeDAO {
+
     private static Employee loggedEmployee = null;
 
-    public Employee getEmployee(String login, String password) {
+    public Employee logEmployee(String login, String password) {
         ResultSet resultSet;
         Employee employee = null;
 
