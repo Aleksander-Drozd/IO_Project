@@ -51,12 +51,12 @@ public class Main extends Application {
     private void initSalesmanView(Employee loggedEmployee, Stage primaryStage) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("View/SalesmanView.fxml"));
+            loader.setLocation(Main.class.getResource("View/ManagerView.fxml"));
 
             BorderPane layout = (BorderPane) loader.load();
 
             Scene scene = new Scene(layout);
-            SalesmanController salesmanController = loader.getController();
+           // SalesmanController salesmanController = loader.getController();
 
             primaryStage.setTitle("Sprzedawca");
             primaryStage.setScene(scene);
