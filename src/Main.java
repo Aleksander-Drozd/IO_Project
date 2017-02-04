@@ -1,9 +1,6 @@
-import Controller.SalesmanController;
 import POJO.Employee;
-import Util.DatabaseUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -19,6 +16,7 @@ public class Main extends Application {
         Employee loggedEmployee = initLoginView();
 
         if (loggedEmployee != null) {
+            //TODO Check Employee position
             initSalesmanView(loggedEmployee, primaryStage);
         } else {
             System.out.println("Blad logowania!");
@@ -51,12 +49,11 @@ public class Main extends Application {
     private void initSalesmanView(Employee loggedEmployee, Stage primaryStage) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("View/ManagerView.fxml"));
+            loader.setLocation(Main.class.getResource("View/SalesmanView.fxml"));
 
             BorderPane layout = (BorderPane) loader.load();
 
             Scene scene = new Scene(layout);
-           // SalesmanController salesmanController = loader.getController();
 
             primaryStage.setTitle("Sprzedawca");
             primaryStage.setScene(scene);

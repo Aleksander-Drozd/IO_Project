@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.sql.Date;
 import java.util.ResourceBundle;
 
-public class DataSaleController implements Initializable{
+public class SaleController implements Initializable{
 
     @FXML
     private TextField firstNameTextField;
@@ -49,7 +49,7 @@ public class DataSaleController implements Initializable{
     private Sale sale;
     private TripModel tripModel;
 
-    public DataSaleController(){
+    public SaleController(){
         genderToggleGroup = new ToggleGroup();
         textFieldArrayList = new ArrayList<>();
         tripModel = new TripModel();

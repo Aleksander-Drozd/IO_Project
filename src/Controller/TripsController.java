@@ -6,10 +6,9 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TripsController extends SalesmanController implements Initializable {
+public class TripsController implements Initializable {
 
-    private ViewTripsController viewTripsController;
-    private DataTripController dataTripController;
+    private TripController tripController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

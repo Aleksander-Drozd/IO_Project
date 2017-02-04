@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SalesmanController implements Initializable {
+public class SalesController implements Initializable {
 
     @FXML
     protected TableView<Sale> salesTableView;
@@ -67,7 +67,7 @@ public class SalesmanController implements Initializable {
 
     protected EmployeeDAO employeeDAO;
 
-    public SalesmanController() {
+    public SalesController() {
         saleModel = new SaleModel();
         employeeDAO = new EmployeeDAO();
     }
@@ -128,18 +128,18 @@ public class SalesmanController implements Initializable {
             BorderPane layout = (BorderPane) loader.load();
 
             Scene scene = new Scene(layout);
-            DataSaleController dataSaleController = loader.getController();
+            SaleController saleController = loader.getController();
 
             dataSaleStage.setScene(scene);
             dataSaleStage.initModality(Modality.APPLICATION_MODAL);
             dataSaleStage.initOwner(addSaleButton.getScene().getWindow());
             dataSaleStage.setTitle("Sprzedaz");
 
-            dataSaleController.setSale(sale);
+            saleController.setSale(sale);
 
             dataSaleStage.showAndWait();
 
-            return dataSaleController.getSale();
+            return saleController.getSale();
         } catch (IOException e) {
             e.printStackTrace();
         }
