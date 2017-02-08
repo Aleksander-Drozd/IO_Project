@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DatabaseUtil {
 
-    private static final String dbURL = "jdbc:mysql://localhost:3306/tour_operator";
+    private static final String dbURL = "jdbc:mysql://localhost:3306/tour_operator?characterEncoding=utf8";
     private static final String user = "root";
     private static final String password = "";
 
