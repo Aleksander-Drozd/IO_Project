@@ -31,7 +31,7 @@ public class EmployeeDAO {
         return employee;
     }
 
-    public Employee getLoggedEmployee(){
+    public static Employee getLoggedEmployee(){
         return loggedEmployee;
     }
 
