@@ -41,12 +41,15 @@ public class DatabaseUtil {
     }
 
     public static void startTransaction() throws SQLException {
-            connection.setAutoCommit(false);
+        connection.setAutoCommit(false);
     }
 
     public static void endTransaction() throws SQLException {
-        connection.commit();
         connection.setAutoCommit(true);
+    }
+
+    public static void rollback() throws SQLException {
+        connection.rollback();
     }
 
     public static int update(String query){

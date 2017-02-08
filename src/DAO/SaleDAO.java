@@ -110,6 +110,12 @@ public class SaleDAO {
             DatabaseUtil.endTransaction();
         } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
+            
+            try {
+                DatabaseUtil.rollback();
+            } catch (SQLException exception){
+
+            }
 
             return false;
         }
@@ -158,7 +164,14 @@ public class SaleDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+
+            try {
+                DatabaseUtil.rollback();
+            } catch (SQLException exception){
+
+            }
         }
+
         return true;
     }
 }
