@@ -21,7 +21,7 @@ public class DatabaseUtil {
         }
     }
 
-    public static ResultSet runStatement(String query) {
+    public static ResultSet runSelectQuery(String query) {
         Statement statement = null;
         ResultSet resultSet;
 

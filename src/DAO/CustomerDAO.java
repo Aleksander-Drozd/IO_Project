@@ -13,7 +13,7 @@ public class CustomerDAO {
 
         String query = "SELECT * FROM customers WHERE id='" + id + "';";
 
-        resultSet = DatabaseUtil.runStatement(query);
+        resultSet = DatabaseUtil.runSelectQuery(query);
         try {
             if (resultSet.next()) {
                 customer = createCustomer(resultSet);

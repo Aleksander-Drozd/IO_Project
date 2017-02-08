@@ -16,7 +16,7 @@ public class TripDAO {
 
         String query = "SELECT * FROM trips";
 
-        resultSet = DatabaseUtil.runStatement(query);
+        resultSet = DatabaseUtil.runSelectQuery(query);
         try {
             while (resultSet.next()) {
                 tripObservableList.add(createTrip(resultSet));
@@ -34,7 +34,7 @@ public class TripDAO {
 
         String query = "SELECT * FROM trips WHERE id='" + id + "';";
 
-        resultSet = DatabaseUtil.runStatement(query);
+        resultSet = DatabaseUtil.runSelectQuery(query);
         try {
             if (resultSet.next()) {
                 trip = createTrip(resultSet);

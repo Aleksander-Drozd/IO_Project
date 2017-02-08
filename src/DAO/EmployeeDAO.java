@@ -17,7 +17,7 @@ public class EmployeeDAO {
         //TODO Mby method for this?
         String SQL = "SELECT id, first_name, last_name, position FROM employee WHERE login='" + login + "' AND password='" + password + "';";
 
-        resultSet = DatabaseUtil.runStatement(SQL);
+        resultSet = DatabaseUtil.runSelectQuery(SQL);
         try {
             if (resultSet.next()) {
                 employee = createEmployee(resultSet);

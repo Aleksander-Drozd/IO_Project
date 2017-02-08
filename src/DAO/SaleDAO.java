@@ -29,7 +29,7 @@ public class SaleDAO {
 
         String query = "SELECT * FROM sales WHERE employee_id='" + employeeDAO.getLoggedEmployee().getId() + "';";
 
-        resultSet = DatabaseUtil.runStatement(query);
+        resultSet = DatabaseUtil.runSelectQuery(query);
         try {
             while (resultSet.next()) {
                 salesObservableList.add(createSale(resultSet));
