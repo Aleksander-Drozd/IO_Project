@@ -1,6 +1,8 @@
 package Controller;
 
+import DAO.EmployeeDAO;
 import DAO.TripDAO;
+import Model.LoginModel;
 import Model.TripModel;
 import POJO.Customer;
 import POJO.Sale;
@@ -77,15 +79,18 @@ public class SaleController implements Initializable{
         saleDatePicker.setValue(LocalDate.now());
     }
 
-    // TODO refactor - make function for create Sale object + function for check input data
+    // TODO refactor - make function for creating Sale object + function for checking input data
     @FXML
     private void handleAddButton(){
         //TODO make sth better to create or not new instance of Sale class - need to remember sale id
         int saleId = sale != null ? sale.getSaleId() : -1;
         sale = new Sale();
         sale.setSaleId(saleId);
+
+        if (!validateData())
+            return;
+
         Customer customer = new Customer();
-        boolean correctData = true;
 
         customer.setFirstName(firstNameTextField.getText());
         customer.setLastName(lastNameTextField.getText());
@@ -100,11 +105,34 @@ public class SaleController implements Initializable{
             customer.setGender("female");
         }
 
+        sale.setQuantity(Integer.parseInt(quantityTextField.getText()));
+        sale.setTrip(tripComboBox.getValue());
+        sale.setEmployee(EmployeeDAO.getLoggedEmployee());
+        sale.setLastName(customer.getLastName());
+        sale.setTripTitle(tripComboBox.getValue().getTitle());
+        sale.setSaleDate(Date.valueOf(saleDatePicker.getValue()));
+        sale.setCustomer(customer);
+
+        ((Stage)firstNameTextField.getScene().getWindow()).close();
+    }
+
+    //ToDO Rename this method. Except validating, it also sets error styles
+    private boolean validateData(){
+        boolean correctData = true;
+
         try{
-            sale.setQuantity(Integer.parseInt(quantityTextField.getText()));
+            Integer.parseInt(quantityTextField.getText());
             quantityTextField.getStyleClass().remove("textfield-error");
         }catch(NumberFormatException e){
             quantityTextField.getStyleClass().add("textfield-error");
+            correctData = false;
+        }
+
+        try{
+            Integer.parseInt(phoneNumberTextField.getText());
+            phoneNumberTextField.getStyleClass().remove("textfield-error");
+        }catch(NumberFormatException e){
+            phoneNumberTextField.getStyleClass().add("textfield-error");
             correctData = false;
         }
 
@@ -117,25 +145,23 @@ public class SaleController implements Initializable{
         }
 
         try{
-            sale.setSaleDate(Date.valueOf(saleDatePicker.getValue()));
+            Date.valueOf(saleDatePicker.getValue());
             saleDatePicker.getStyleClass().remove("date-picker-error");
         }catch (RuntimeException e){
             saleDatePicker.getStyleClass().add("date-picker-error");
         }
 
-        if (tripComboBox.getValue() == null){
+        if (tripComboBox.getValue() != null){
+            tripComboBox.getStyleClass().remove("textfield-error");
+        } else{
             correctData = false;
             tripComboBox.getStyleClass().add("textfield-error");
-        } else{
-            tripComboBox.getStyleClass().remove("textfield-error");
-            sale.setTrip(tripComboBox.getValue());
         }
 
-        sale.setCustomer(customer);
+        if (postCodeTextField.getText().length() > 6)
+            correctData = false;
 
-        if(correctData){
-            ((Stage)firstNameTextField.getScene().getWindow()).close();
-        }
+        return correctData;
     }
 
     @FXML
