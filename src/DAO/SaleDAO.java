@@ -67,7 +67,8 @@ public class SaleDAO {
         return sale;
     }
 
-    public int addSale(Sale sale){
+    //Todo Refactor name or method body. It's doing too much
+    public boolean addSale(Sale sale){
         int gender, customerId, saleId;
 
         Customer customer = sale.getCustomer();
@@ -91,6 +92,7 @@ public class SaleDAO {
             DatabaseUtil.startTransaction();
 
             customerId = DatabaseUtil.update(insertCustomerQuery);
+            customer.setId(customerId);
 
             if (customerId == DatabaseUtil.ERROR) {
                 throw new SQLException();
@@ -104,6 +106,7 @@ public class SaleDAO {
                     sale.getSaleDate() + "');";
 
             saleId = DatabaseUtil.update(insertSaleQuery);
+            sale.setSaleId(saleId);
 
             if (saleId == DatabaseUtil.ERROR) {
                 throw new SQLException();
@@ -119,10 +122,10 @@ public class SaleDAO {
 
             }
 
-            return DatabaseUtil.ERROR;
+            return false;
         }
 
-        return saleId;
+        return true;
     }
 
     public boolean updateSale(Sale sale) {
@@ -144,8 +147,8 @@ public class SaleDAO {
                 + "city = '" + customer.getCity() + "', "
                 + "street = '" + customer.getStreet() + "', "
                 + "post_code = '" + customer.getPostCode() + "', "
-                + "phone_number = '" + customer.getPhoneNumber() + "' ";
-                //+ "WHERE customer_id = '" + customer.getCustomerId() + "';";
+                + "phone_number = '" + customer.getPhoneNumber() + "' "
+                + "WHERE customer_id = '" + customer.getId() + "';";
 
         String updateSaleQuery = "UPDATE sales SET "
                 + "employee_id = '" + employeeDAO.getLoggedEmployee().getId() + "', "

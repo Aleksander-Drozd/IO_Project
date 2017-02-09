@@ -26,12 +26,7 @@ public class SaleModel {
     }
 
     public void addSale(Sale sale){
-        int saleId;
-
-        saleId = saleDAO.addSale(sale);
-
-        if (saleId != DatabaseUtil.ERROR) {
-            sale.setSaleId(saleId);
+        if (saleDAO.addSale(sale)) {
             salesObservableList.add(sale);
         } else {
             //TODO Show error status
