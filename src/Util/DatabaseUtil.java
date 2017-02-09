@@ -62,7 +62,11 @@ public class DatabaseUtil {
         try {
             ResultSet resultSet;
             statement = connection.createStatement();
-            statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            
+            if (statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS) == 0){
+                return ERROR;
+            }
+
             resultSet = statement.getGeneratedKeys();
 
             if (resultSet.next()) {
@@ -70,7 +74,7 @@ public class DatabaseUtil {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return -1;
+            return ERROR;
         }
 
         return 1;
