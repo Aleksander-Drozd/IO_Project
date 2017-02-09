@@ -101,7 +101,7 @@ public class SaleDAO {
             String insertSaleQuery = "INSERT INTO sales (employee_id, trip_id, customer_id, quantity, date) VALUES ('" +
                     employeeDAO.getLoggedEmployee().getId() + "', '" +
                     sale.getTrip().getId() + "', '" +
-                    customerId + "', '" +
+                    customer.getId() + "', '" +
                     sale.getQuantity() + "', '" +
                     sale.getSaleDate() + "');";
 
@@ -118,6 +118,7 @@ public class SaleDAO {
             
             try {
                 DatabaseUtil.rollback();
+                DatabaseUtil.endTransaction();
             } catch (SQLException exception){
 
             }
@@ -129,8 +130,6 @@ public class SaleDAO {
     }
 
     public boolean updateSale(Sale sale) {
-        //TODO Check query to update sale (WHERE sale.saleId) and add customerId attribute to customer object
-
         int gender, customerId;
         Customer customer = sale.getCustomer();
 
@@ -140,6 +139,12 @@ public class SaleDAO {
             gender = 0;
         }
 
+        String updateSaleQuery = "UPDATE sales SET "
+                + "trip_id = '" + sale.getTrip().getId() + "', "
+                + "quantity = '" + sale.getQuantity() + "', "
+                + "date = '" + sale.getSaleDate() + "' "
+                + "WHERE id = " + sale.getSaleId() + ";";
+
         String updateCustomerQuery = "UPDATE customers SET "
                 + "first_name = '" + customer.getFirstName() + "', "
                 + "last_name = '" + customer.getLastName() + "', "
@@ -148,15 +153,7 @@ public class SaleDAO {
                 + "street = '" + customer.getStreet() + "', "
                 + "post_code = '" + customer.getPostCode() + "', "
                 + "phone_number = '" + customer.getPhoneNumber() + "' "
-                + "WHERE customer_id = '" + customer.getId() + "';";
-
-        String updateSaleQuery = "UPDATE sales SET "
-                + "employee_id = '" + employeeDAO.getLoggedEmployee().getId() + "', "
-                + "trip_id = '" + sale.getTrip().getId() + "', "
-                //+ "customer_id = '" + customer.getCustomerId() + "', "
-                + "quantity = '" + sale.getQuantity() + "', "
-                + "date = '" + sale.getSaleDate() + "' "
-                + "WHERE id = " + sale.getSaleId() + ";";
+                + "WHERE id = '" + customer.getId() + "';";
 
         try {
             DatabaseUtil.startTransaction();
@@ -172,9 +169,11 @@ public class SaleDAO {
 
             try {
                 DatabaseUtil.rollback();
+                DatabaseUtil.endTransaction();
             } catch (SQLException exception){
-
+                e.printStackTrace();
             }
+            return false;
         }
 
         return true;
