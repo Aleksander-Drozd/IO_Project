@@ -100,9 +100,9 @@ public class SaleController implements Initializable{
         customer.setPhoneNumber(phoneNumberTextField.getText());
 
         if(maleRadioButton.isSelected()) {
-            customer.setGender("male");
+            customer.setGender("Male");
         } else {
-            customer.setGender("female");
+            customer.setGender("Female");
         }
 
         sale.setQuantity(Integer.parseInt(quantityTextField.getText()));
@@ -183,10 +183,10 @@ public class SaleController implements Initializable{
         tripComboBox.getSelectionModel().select(sale.getTrip());
 
         switch (sale.getCustomer().getGender()) {
-            case "f":
+            case "Female":
                 femaleRadioButton.setSelected(true);
                 break;
-            case "m":
+            case "Male":
                 maleRadioButton.setSelected(true);
                 break;
             default:

@@ -25,7 +25,7 @@ public class Customer {
         lastName = "Panda";
         city = "Wroclove <3";
         street = "Mikolaja";
-        gender = "male";
+        gender = "Male";
         postCode = "99-333";
         phoneNumber = "332908123";
     }

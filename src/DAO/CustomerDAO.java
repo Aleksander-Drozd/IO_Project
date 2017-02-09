@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CustomerDAO {
+
     public Customer getCustomer(int id) {
         Customer customer = null;
         ResultSet resultSet;
@@ -38,10 +39,11 @@ public class CustomerDAO {
 
         gender = resultSet.getInt("gender");
 
-        if (gender == 1)
+        if (gender == 1) {
             customer.setGender("Male");
-        else
+        } else {
             customer.setGender("Female");
+        }
 
         return customer;
     }

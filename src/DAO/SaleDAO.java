@@ -72,7 +72,7 @@ public class SaleDAO {
 
         Customer customer = sale.getCustomer();
 
-        if (customer.getGender().equals("male")) {
+        if (customer.getGender().equals("Male")) {
             gender = 1;
         } else {
             gender = 0;
@@ -129,7 +129,7 @@ public class SaleDAO {
         int gender, customerId;
         Customer customer = sale.getCustomer();
 
-        if (customer.getGender().equals("male")) {
+        if (customer.getGender().equals("Male")) {
             gender = 1;
         } else {
             gender = 0;
