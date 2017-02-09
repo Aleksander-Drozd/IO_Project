@@ -120,18 +120,16 @@ public class SaleController implements Initializable{
     private boolean validateData(){
         boolean correctData = true;
 
-        try{
-            Integer.parseInt(quantityTextField.getText());
+        if (isNumber(quantityTextField.getText())){
             quantityTextField.getStyleClass().remove("textfield-error");
-        }catch(NumberFormatException e){
+        } else {
             quantityTextField.getStyleClass().add("textfield-error");
             correctData = false;
         }
 
-        try{
-            Integer.parseInt(phoneNumberTextField.getText());
+        if (isNumber(phoneNumberTextField.getText())){
             phoneNumberTextField.getStyleClass().remove("textfield-error");
-        }catch(NumberFormatException e){
+        } else {
             phoneNumberTextField.getStyleClass().add("textfield-error");
             correctData = false;
         }
@@ -162,6 +160,15 @@ public class SaleController implements Initializable{
             correctData = false;
 
         return correctData;
+    }
+
+    private boolean isNumber(String text){
+        try{
+            Integer.parseInt(text);
+            return  true;
+        } catch (NumberFormatException e){
+            return false;
+        }
     }
 
     @FXML
