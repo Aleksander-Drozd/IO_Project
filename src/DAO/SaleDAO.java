@@ -67,8 +67,8 @@ public class SaleDAO {
         return sale;
     }
 
-    public boolean addSale(Sale sale){
-        int gender, customerId;
+    public int addSale(Sale sale){
+        int gender, customerId, saleId;
 
         Customer customer = sale.getCustomer();
 
@@ -103,7 +103,9 @@ public class SaleDAO {
                     sale.getQuantity() + "', '" +
                     sale.getSaleDate() + "');";
 
-            if (DatabaseUtil.update(insertSaleQuery) == DatabaseUtil.ERROR) {
+            saleId = DatabaseUtil.update(insertSaleQuery);
+
+            if (saleId == DatabaseUtil.ERROR) {
                 throw new SQLException();
             }
 
@@ -117,10 +119,10 @@ public class SaleDAO {
 
             }
 
-            return false;
+            return DatabaseUtil.ERROR;
         }
 
-        return true;
+        return saleId;
     }
 
     public boolean updateSale(Sale sale) {

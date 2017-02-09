@@ -1,5 +1,6 @@
 package Model;
 
+import Util.DatabaseUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import POJO.Sale;
@@ -25,7 +26,12 @@ public class SaleModel {
     }
 
     public void addSale(Sale sale){
-        if (saleDAO.addSale(sale)) {
+        int saleId;
+
+        saleId = saleDAO.addSale(sale);
+
+        if (saleId != DatabaseUtil.ERROR) {
+            sale.setSaleId(saleId);
             salesObservableList.add(sale);
         } else {
             //TODO Show error status
