@@ -79,11 +79,11 @@ public class SalesController implements Initializable {
         Employee loggedEmployee = employeeDAO.getLoggedEmployee();
         salesmanLabel.setText(loggedEmployee.getLastName() + " " + loggedEmployee.getFirstName());
 
-        salesTableView.setItems(salesObservableList);
-
         lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         tripTitleTableColumn.setCellValueFactory(new PropertyValueFactory<>("tripTitle"));
         dateTableColumn.setCellValueFactory(new PropertyValueFactory<>("saleDate"));
+
+        salesTableView.setItems(salesObservableList);
 
         salesTableView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> {
@@ -138,6 +138,7 @@ public class SalesController implements Initializable {
             saleController.setSale(sale);
 
             dataSaleStage.showAndWait();
+            salesTableView.refresh();
 
             return saleController.getSale();
         } catch (IOException e) {

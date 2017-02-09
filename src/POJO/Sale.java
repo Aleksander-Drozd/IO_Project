@@ -23,6 +23,13 @@ public class Sale {
         saleDate = new Date();
     }
 
+    public Sale(String forTests) {
+        employee = new Employee("");
+        trip = new Trip("");
+        customer = new Customer("");
+        saleDate = new Date();
+    }
+
     public int getSaleId() {
         return saleId;
     }
@@ -55,42 +62,36 @@ public class Sale {
         this.customer = customer;
     }
 
-    public void setSaleDate(Date saleDate) {
-        this.saleDate = saleDate;
-    }
-
     public int getQuantity() {
         return quantity;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setTripTitle(String tripTitle) {
-        this.tripTitle = tripTitle;
-    }
-
-    public Sale(String forTests) {
-        employee = new Employee("");
-        trip = new Trip("");
-        customer = new Customer("");
-        saleDate = new Date();
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
+    //for tableView
     public String getLastName() {
-        return customer.getLastName();
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getTripTitle() {
-        return trip.getTitle();
+        return tripTitle;
+    }
+
+    public void setTripTitle(String tripTitle) {
+        this.tripTitle = tripTitle;
     }
 
     public String getSaleDate() {
         return saleDate.toString();
+    }
+
+    public void setSaleDate(Date saleDate) {
+        this.saleDate = saleDate;
     }
 }

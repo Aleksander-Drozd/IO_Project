@@ -80,13 +80,13 @@ public class SaleDAO {
         }
 
         String insertCustomerQuery = "INSERT INTO customers (first_name, last_name, gender, city, street, post_code, phone_number)" + "VALUES ('" +
-                customer.getFirstName() + "', '" +
-                customer.getLastName() + "', '" +
-                gender + "', '" +
-                customer.getCity() + "', '" +
-                customer.getStreet() + "', '" +
-                customer.getPostCode() + "', '" +
-                customer.getPhoneNumber() + "');";
+            customer.getFirstName() + "', '" +
+            customer.getLastName() + "', '" +
+            gender + "', '" +
+            customer.getCity() + "', '" +
+            customer.getStreet() + "', '" +
+            customer.getPostCode() + "', '" +
+            customer.getPhoneNumber() + "');";
 
         try {
             DatabaseUtil.startTransaction();
