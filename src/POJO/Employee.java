@@ -14,7 +14,7 @@ public class Employee {
         id = 5;
         firstName = "Marek";
         lastName = "Milkowski";
-        position = "kierownik";
+        position = "Manager";
     }
 
     public int getId() {

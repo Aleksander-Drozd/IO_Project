@@ -16,8 +16,9 @@ public class Main extends Application {
         Employee loggedEmployee = initLoginView();
 
         if (loggedEmployee != null) {
-            //TODO Check Employee position
-            initSalesmanView(loggedEmployee, primaryStage);
+            String position = loggedEmployee.getPosition();
+
+            initEmployeeView(position, primaryStage);
         } else {
             System.out.println("Blad logowania!");
         }
@@ -46,16 +47,17 @@ public class Main extends Application {
         }
     }
 
-    private void initSalesmanView(Employee loggedEmployee, Stage primaryStage) {
+    private void initEmployeeView(String position, Stage primaryStage) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("View/SalesmanView.fxml"));
+
+            loader.setLocation(Main.class.getResource("View/" + position + "View.fxml"));
 
             BorderPane layout = (BorderPane) loader.load();
 
             Scene scene = new Scene(layout);
 
-            primaryStage.setTitle("Sprzedawca");
+            primaryStage.setTitle("Super program do zarzania biurem turystycznym");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
