@@ -2,6 +2,7 @@ package POJO;
 
 public class Customer {
 
+    private int id;
     private String firstName;
     private String lastName;
     private String gender;
@@ -11,6 +12,7 @@ public class Customer {
     private String phoneNumber;
 
     public Customer(){
+        id = 0;
         firstName = "";
         lastName = "";
         city = "";
@@ -28,6 +30,14 @@ public class Customer {
         gender = "Male";
         postCode = "99-333";
         phoneNumber = "332908123";
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
