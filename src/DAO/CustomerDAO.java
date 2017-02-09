@@ -30,6 +30,7 @@ public class CustomerDAO {
         Customer customer = new Customer();
         int gender;
 
+        customer.setId(resultSet.getInt("id"));
         customer.setFirstName(resultSet.getString("first_name"));
         customer.setLastName(resultSet.getString("last_name"));
         customer.setCity(resultSet.getString("city"));

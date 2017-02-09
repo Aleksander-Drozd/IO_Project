@@ -142,9 +142,8 @@ public class SalesController implements Initializable {
             return saleController.getSale();
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
-
-        return null;
     }
 
     @FXML
