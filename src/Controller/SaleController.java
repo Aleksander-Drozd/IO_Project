@@ -49,6 +49,7 @@ public class SaleController implements Initializable{
     private ArrayList<TextField> textFieldArrayList;
 
     private Sale sale;
+    private Customer customer;
     private TripModel tripModel;
 
     public SaleController(){
@@ -83,14 +84,18 @@ public class SaleController implements Initializable{
     @FXML
     private void handleAddButton(){
         //TODO make sth better to create or not new instance of Sale class - need to remember sale id
-        int saleId = sale != null ? sale.getSaleId() : -1;
-        sale = new Sale();
-        sale.setSaleId(saleId);
-
         if (!validateData())
             return;
 
-        Customer customer = new Customer();
+        setCustomer();
+        setSale();
+
+        ((Stage)firstNameTextField.getScene().getWindow()).close();
+    }
+
+    private void setCustomer(){
+        if(sale == null)
+            customer = new Customer();
 
         customer.setFirstName(firstNameTextField.getText());
         customer.setLastName(lastNameTextField.getText());
@@ -104,6 +109,11 @@ public class SaleController implements Initializable{
         } else {
             customer.setGender("Female");
         }
+    }
+
+    private void setSale(){
+        if (sale == null)
+            sale = new Sale();
 
         sale.setQuantity(Integer.parseInt(quantityTextField.getText()));
         sale.setTrip(tripComboBox.getValue());
@@ -112,8 +122,6 @@ public class SaleController implements Initializable{
         sale.setTripTitle(tripComboBox.getValue().getTitle());
         sale.setSaleDate(Date.valueOf(saleDatePicker.getValue()));
         sale.setCustomer(customer);
-
-        ((Stage)firstNameTextField.getScene().getWindow()).close();
     }
 
     //ToDO Rename this method. Except validating, it also sets error styles
@@ -213,6 +221,7 @@ public class SaleController implements Initializable{
 
         if (sale != null) {
             setSaleView(sale);
+            customer = sale.getCustomer();
         }
     }
 
