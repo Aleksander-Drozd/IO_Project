@@ -34,13 +34,7 @@ public class TripsController implements Initializable {
         TreeItem<TreeTableFormatFactory> root = new TreeItem<>(new TreeTableFormatFactory("","", null));
 
         for (Trip trip: trips) {
-            TreeItem<TreeTableFormatFactory> title = new TreeItem<>(new TreeTableFormatFactory(trip.getTitle(), "", trip));
-             title.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Opis", trip.getDescription(), trip)));
-             title.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Ilosc dni", Integer.toString(trip.getDays()), trip)));
-             title.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Cena", Float.toString(trip.getPrice()), trip)));
-             title.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Data", trip.getDate().toString(), trip)));
-
-            root.getChildren().add(title);
+            root.getChildren().add(generateTreeItem(trip));
         }
 
         tripLabel.setCellValueFactory((TreeTableColumn.CellDataFeatures<TreeTableFormatFactory, String> parameter) -> parameter.getValue().getValue().getLabelProperty());
@@ -50,6 +44,15 @@ public class TripsController implements Initializable {
         tripsTree.setRoot(root);
     }
 
+    private TreeItem<TreeTableFormatFactory> generateTreeItem(Trip trip) {
+        TreeItem<TreeTableFormatFactory> root = new TreeItem<>(new TreeTableFormatFactory(trip.getTitle(), "", trip));
+        root.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Opis", trip.getDescription(), trip)));
+        root.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Ilosc dni", Integer.toString(trip.getDays()), trip)));
+        root.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Cena", Float.toString(trip.getPrice()), trip)));
+        root.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Data", trip.getDate().toString(), trip)));
+        return root;
+    }
+
     @FXML
     private void handleButtonAddTrip() {
         System.out.println("Add!");
@@ -57,7 +60,13 @@ public class TripsController implements Initializable {
 
     @FXML
     private void handleButtonEditTrip() {
-        System.out.println("Edit!");
+        TreeItem<TreeTableFormatFactory> selectedItem = tripsTree.getSelectionModel().getSelectedItem();
+
+        if (selectedItem != null) {
+            // TODO getConnectedObject return trip to edit - make function like add/edit in Sale
+            System.out.println(selectedItem.getValue().getConnectedObject());
+            System.out.println("Edit!");
+        }
     }
 
 }
