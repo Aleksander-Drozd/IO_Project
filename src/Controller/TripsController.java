@@ -22,9 +22,7 @@ public class TripsController implements Initializable {
     @FXML
     private TreeTableView<TreeTableFormatFactory> tripsTree;
 
-    private TripController tripController;
     private TripModel tripModel;
-    private ObservableList<Trip> trips;
 
     public TripsController() {
         tripModel = new TripModel();
@@ -32,17 +30,15 @@ public class TripsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        trips = tripModel.getTrips();
+        ObservableList<Trip> trips = tripModel.getTrips();
         TreeItem<TreeTableFormatFactory> root = new TreeItem<>(new TreeTableFormatFactory("","", null));
 
         for (Trip trip: trips) {
-            TreeItem<TreeTableFormatFactory> description = new TreeItem<>(new TreeTableFormatFactory("Opis", trip.getDescription(), trip)),
-                                            days = new TreeItem<>(new TreeTableFormatFactory("Ilosc dni", Integer.toString(trip.getDays()), trip)),
-                                            price = new TreeItem<>(new TreeTableFormatFactory("Cena", Float.toString(trip.getPrice()), trip)),
-                                            date = new TreeItem<>(new TreeTableFormatFactory("Data", trip.getDate().toString(), trip)),
-                                            title = new TreeItem<>(new TreeTableFormatFactory(trip.getTitle(), "", trip));
-
-            title.getChildren().setAll(description, days, price, date);
+            TreeItem<TreeTableFormatFactory> title = new TreeItem<>(new TreeTableFormatFactory(trip.getTitle(), "", trip));
+             title.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Opis", trip.getDescription(), trip)));
+             title.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Ilosc dni", Integer.toString(trip.getDays()), trip)));
+             title.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Cena", Float.toString(trip.getPrice()), trip)));
+             title.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Data", trip.getDate().toString(), trip)));
 
             root.getChildren().add(title);
         }
