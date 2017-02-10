@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class SalesController implements Initializable {
@@ -67,6 +68,8 @@ public class SalesController implements Initializable {
 
     protected EmployeeDAO employeeDAO;
 
+    ObservableList<Sale> salesObservableList;
+
     public SalesController() {
         saleModel = new SaleModel();
         employeeDAO = new EmployeeDAO();
@@ -74,7 +77,10 @@ public class SalesController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Sale> salesObservableList = saleModel.getSalesObservableList();
+        salesObservableList = saleModel.getSalesObservableList();
+        salesObservableList.sort((sale1, sale2) ->
+                LocalDate.parse(sale2.getSaleDate())
+                        .compareTo(LocalDate.parse(sale1.getSaleDate())));
 
         Employee loggedEmployee = employeeDAO.getLoggedEmployee();
         salesmanLabel.setText(loggedEmployee.getLastName() + " " + loggedEmployee.getFirstName());
@@ -138,6 +144,11 @@ public class SalesController implements Initializable {
             saleController.setSale(sale);
 
             dataSaleStage.showAndWait();
+
+            salesObservableList.sort((sale1, sale2) ->
+                    LocalDate.parse(sale2.getSaleDate())
+                            .compareTo(LocalDate.parse(sale1.getSaleDate())));
+
             salesTableView.refresh();
 
             return saleController.getSale();
