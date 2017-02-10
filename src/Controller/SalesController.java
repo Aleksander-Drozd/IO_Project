@@ -62,17 +62,14 @@ public class SalesController implements Initializable {
     @FXML
     protected Button addSaleButton;
 
-    protected SaleModel saleModel;
+    private SaleModel saleModel;
 
-    protected Sale chosenSale = null;
+    private Sale chosenSale = null;
 
-    protected EmployeeDAO employeeDAO;
-
-    ObservableList<Sale> salesObservableList;
+    private ObservableList<Sale> salesObservableList;
 
     public SalesController() {
         saleModel = new SaleModel();
-        employeeDAO = new EmployeeDAO();
     }
 
     @Override
