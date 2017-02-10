@@ -34,9 +34,7 @@ public class SaleModel {
     }
 
     public void updateSale(Sale sale) {
-        if(saleDAO.updateSale(sale)) {
-
-        } else {
+        if(!saleDAO.updateSale(sale)) {
             //TODO Show error status
         }
     }

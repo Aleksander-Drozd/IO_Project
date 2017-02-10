@@ -210,8 +210,7 @@ public class SaleController implements Initializable{
                 break;
         }
 
-        // TODO make Util Date to set own LocalDate format
-        saleDatePicker.setValue(LocalDate.now());
+        saleDatePicker.setValue(LocalDate.parse(sale.getSaleDate()));
 
         quantityTextField.setText(sale.getQuantity() + "");
     }
