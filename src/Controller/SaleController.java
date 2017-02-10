@@ -80,10 +80,8 @@ public class SaleController implements Initializable{
         saleDatePicker.setValue(LocalDate.now());
     }
 
-    // TODO refactor - make function for creating Sale object + function for checking input data
     @FXML
     private void handleAddButton(){
-        //TODO make sth better to create or not new instance of Sale class - need to remember sale id
         if (!validateData())
             return;
 

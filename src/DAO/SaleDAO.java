@@ -5,6 +5,8 @@ import POJO.Employee;
 import POJO.Sale;
 import POJO.Trip;
 import Util.DatabaseUtil;
+import Util.Dialog;
+import Util.ErrorDescriptions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -35,7 +37,7 @@ public class SaleDAO {
                 salesObservableList.add(createSale(resultSet));
             }
         } catch (SQLException | NullPointerException e) {
-            e.printStackTrace();
+            Dialog.displayErrorDialog(ErrorDescriptions.DATABASE_ERROR, null);
         }
 
         return salesObservableList;

@@ -1,6 +1,7 @@
 package Model;
 
-import Util.DatabaseUtil;
+import Util.Dialog;
+import Util.ErrorDescriptions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import POJO.Sale;
@@ -29,13 +30,13 @@ public class SaleModel {
         if (saleDAO.addSale(sale)) {
             salesObservableList.add(sale);
         } else {
-            //TODO Show error status
+            Dialog.displayErrorDialog(ErrorDescriptions.DATABASE_ERROR, null);
         }
     }
 
     public void updateSale(Sale sale) {
         if(!saleDAO.updateSale(sale)) {
-            //TODO Show error status
+            Dialog.displayErrorDialog(ErrorDescriptions.DATABASE_ERROR, null);
         }
     }
 }
