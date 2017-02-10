@@ -126,20 +126,6 @@ public class SaleController implements Initializable{
     private boolean validateData(){
         boolean correctData = true;
 
-        if (isNumber(quantityTextField.getText())){
-            quantityTextField.getStyleClass().remove("textfield-error");
-        } else {
-            quantityTextField.getStyleClass().add("textfield-error");
-            correctData = false;
-        }
-
-        if (isNumber(phoneNumberTextField.getText())){
-            phoneNumberTextField.getStyleClass().remove("textfield-error");
-        } else {
-            phoneNumberTextField.getStyleClass().add("textfield-error");
-            correctData = false;
-        }
-
         for(TextField textField:textFieldArrayList) {
             textField.getStyleClass().remove("textfield-error");
             if(textField.getText().equals("")){
@@ -147,6 +133,12 @@ public class SaleController implements Initializable{
                 correctData = false;
             }
         }
+
+        if (!validateNumberTextField(quantityTextField))
+            correctData = false;
+
+        if (!validateNumberTextField(phoneNumberTextField))
+            correctData = false;
 
         try{
             Date.valueOf(saleDatePicker.getValue());
@@ -181,6 +173,16 @@ public class SaleController implements Initializable{
     private void handleCancelButton(){
         sale = null;
         ((Stage)firstNameTextField.getScene().getWindow()).close();
+    }
+
+    private boolean validateNumberTextField(TextField textField){
+        if (isNumber(textField.getText())){
+            textField.getStyleClass().remove("textfield-error");
+            return true;
+        } else {
+            textField.getStyleClass().add("textfield-error");
+            return false;
+        }
     }
 
     private void setSaleView(Sale sale) {
