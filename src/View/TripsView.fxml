@@ -8,13 +8,12 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TripsController">
    <top>
-      <TreeTableView prefHeight="317.0" BorderPane.alignment="CENTER">
+      <TreeTableView fx:id="tripsTree" prefHeight="317.0" BorderPane.alignment="CENTER">
         <columns>
-          <TreeTableColumn maxWidth="215.0" prefWidth="215.0" text="Wycieczka" />
-          <TreeTableColumn maxWidth="380.0" minWidth="3.0" prefWidth="384.0" text="Szczegóły" />
+          <TreeTableColumn fx:id="tripLabel" maxWidth="215.0" prefWidth="215.0" text="Wycieczka" />
+          <TreeTableColumn fx:id="tripContent" maxWidth="380.0" minWidth="3.0" prefWidth="384.0" text="Szczegóły" />
         </columns>
       </TreeTableView>
    </top>
