@@ -23,7 +23,7 @@ public class DatabaseUtil {
 
     public static ResultSet runSelectQuery(String query) {
         Statement statement = null;
-        ResultSet resultSet;
+        ResultSet resultSet = null;
 
         if (connection == null) {
             setConnection();
@@ -32,12 +32,13 @@ public class DatabaseUtil {
         try {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(query);
+            return resultSet;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
+        } finally {
+            //closeStatement(statement);
         }
-
-        return resultSet;
     }
 
     public static void startTransaction() throws SQLException {
@@ -52,15 +53,31 @@ public class DatabaseUtil {
         connection.rollback();
     }
 
+    public static void closeStatement(Statement statement){
+        try {
+            statement.close();
+        } catch (SQLException e) {
+
+        }
+    }
+
+    public static void closeResultSet(ResultSet resultSet){
+        try {
+            resultSet.close();
+        } catch (SQLException e) {
+
+        }
+    }
+
     public static int update(String query){
         Statement statement = null;
+        ResultSet resultSet = null;
 
         if (connection == null) {
             setConnection();
         }
 
         try {
-            ResultSet resultSet;
             statement = connection.createStatement();
             
             if (statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS) == 0){
@@ -75,6 +92,9 @@ public class DatabaseUtil {
         } catch (SQLException e) {
             e.printStackTrace();
             return ERROR;
+        } finally {
+            closeResultSet(resultSet);
+            closeStatement(statement);
         }
 
         return 1;
