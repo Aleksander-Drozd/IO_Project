@@ -1,4 +1,5 @@
 import POJO.Employee;
+import Util.DatabaseUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,6 +23,11 @@ public class Main extends Application {
         } else {
             System.out.println("Blad logowania!");
         }
+    }
+
+    @Override
+    public void stop(){
+        DatabaseUtil.closeConnection();
     }
 
     private Employee initLoginView() {

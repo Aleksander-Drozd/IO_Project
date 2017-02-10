@@ -69,6 +69,15 @@ public class DatabaseUtil {
         }
     }
 
+    public static void closeConnection(){
+        try {
+            if(connection != null)
+                connection.close();
+        } catch (SQLException e) {
+
+        }
+    }
+
     public static int update(String query){
         Statement statement = null;
         ResultSet resultSet = null;
