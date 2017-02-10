@@ -38,6 +38,8 @@ public class SaleDAO {
             }
         } catch (SQLException | NullPointerException e) {
             Dialog.displayErrorDialog(ErrorDescriptions.DATABASE_ERROR, null);
+        } finally {
+            DatabaseUtil.closeResultSet(resultSet);
         }
 
         return salesObservableList;

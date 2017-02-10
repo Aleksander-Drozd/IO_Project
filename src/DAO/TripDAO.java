@@ -23,6 +23,8 @@ public class TripDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            DatabaseUtil.closeResultSet(resultSet);
         }
 
         return tripObservableList;
@@ -41,6 +43,8 @@ public class TripDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            DatabaseUtil.closeResultSet(resultSet);
         }
 
         return trip;

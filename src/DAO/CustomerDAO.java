@@ -21,6 +21,8 @@ public class CustomerDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            DatabaseUtil.closeResultSet(resultSet);
         }
 
         return customer;

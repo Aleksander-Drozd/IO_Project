@@ -26,6 +26,8 @@ public class EmployeeDAO {
             }
         } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
+        } finally {
+            DatabaseUtil.closeResultSet(resultSet);
         }
 
         return employee;
