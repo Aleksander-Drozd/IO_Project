@@ -82,7 +82,7 @@ public class SalesController implements Initializable {
                 LocalDate.parse(sale2.getSaleDate())
                         .compareTo(LocalDate.parse(sale1.getSaleDate())));
 
-        Employee loggedEmployee = employeeDAO.getLoggedEmployee();
+        Employee loggedEmployee = EmployeeDAO.getLoggedEmployee();
         salesmanLabel.setText(loggedEmployee.getLastName() + " " + loggedEmployee.getFirstName());
 
         lastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -131,7 +131,7 @@ public class SalesController implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../View/SaleView.fxml"));
 
-            BorderPane layout = (BorderPane) loader.load();
+            BorderPane layout = loader.load();
 
             Scene scene = new Scene(layout);
             SaleController saleController = loader.getController();

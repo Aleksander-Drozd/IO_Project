@@ -29,7 +29,7 @@ public class SaleDAO {
         ObservableList<Sale> salesObservableList = FXCollections.observableArrayList();
         ResultSet resultSet;
 
-        String query = "SELECT * FROM sales WHERE employee_id='" + employeeDAO.getLoggedEmployee().getId() + "' ORDER BY date DESC;";
+        String query = "SELECT * FROM sales WHERE employee_id='" + EmployeeDAO.getLoggedEmployee().getId() + "' ORDER BY date DESC;";
 
         resultSet = DatabaseUtil.runSelectQuery(query);
         try {
@@ -54,7 +54,7 @@ public class SaleDAO {
         tripId = resultSet.getInt("trip_id");
         customerId = resultSet.getInt("customer_id");
 
-        Employee employee = employeeDAO.getLoggedEmployee();
+        Employee employee = EmployeeDAO.getLoggedEmployee();
         Trip trip = tripDAO.getTrip(tripId);
         Customer customer = customerDAO.getCustomer(customerId);
 
@@ -103,7 +103,7 @@ public class SaleDAO {
             }
 
             String insertSaleQuery = "INSERT INTO sales (employee_id, trip_id, customer_id, quantity, date) VALUES ('" +
-                    employeeDAO.getLoggedEmployee().getId() + "', '" +
+                    EmployeeDAO.getLoggedEmployee().getId() + "', '" +
                     sale.getTrip().getId() + "', '" +
                     customer.getId() + "', '" +
                     sale.getQuantity() + "', '" +
