@@ -30,7 +30,7 @@ public class SaleModel {
         if (saleDAO.addSale(sale)) {
             salesObservableList.add(sale);
         } else {
-            Dialog.displayErrorDialog(ErrorDescriptions.DATABASE_ERROR, null);
+            Dialog.displayErrorDialog(ErrorDescriptions.DATABASE_ERROR);
         }
     }
 
@@ -38,7 +38,7 @@ public class SaleModel {
         if(!saleDAO.updateSale(editedSale)) {
             salesObservableList.remove(editedSale);
             salesObservableList.add(originalSale);
-            Dialog.displayErrorDialog(ErrorDescriptions.DATABASE_ERROR, null);
+            Dialog.displayErrorDialog(ErrorDescriptions.DATABASE_ERROR);
         }
     }
 }

@@ -37,7 +37,7 @@ public class SaleDAO {
                 salesObservableList.add(createSale(resultSet));
             }
         } catch (SQLException | NullPointerException e) {
-            Dialog.displayErrorDialog(ErrorDescriptions.DATABASE_ERROR, null);
+            Dialog.displayErrorDialog(ErrorDescriptions.DATABASE_ERROR);
         } finally {
             DatabaseUtil.closeResultSet(resultSet);
         }

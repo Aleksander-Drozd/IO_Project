@@ -4,6 +4,10 @@ import javafx.scene.control.Alert;
 
 public class Dialog {
 
+    public static void displayErrorDialog(String header){
+        displayErrorDialog(header, null);
+    }
+
     public static void displayErrorDialog(String header, String description){
         Alert alert = new Alert(Alert.AlertType.ERROR);
 
@@ -12,6 +16,10 @@ public class Dialog {
         alert.setContentText(description);
 
         alert.showAndWait();
+    }
+
+    public static void displayInfoDialog(String header){
+        displayErrorDialog(header, null);
     }
 
     public static void displayInfoDialog(String header, String description){
