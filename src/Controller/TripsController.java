@@ -37,8 +37,10 @@ public class TripsController implements Initializable {
             root.getChildren().add(generateTreeItem(trip));
         }
 
-        tripLabel.setCellValueFactory((TreeTableColumn.CellDataFeatures<TreeTableFormatFactory, String> parameter) -> parameter.getValue().getValue().getLabelProperty());
-        tripContent.setCellValueFactory((TreeTableColumn.CellDataFeatures<TreeTableFormatFactory, String> parameter) -> parameter.getValue().getValue().getDescriptionProperty());
+        tripLabel.setCellValueFactory((TreeTableColumn.CellDataFeatures<TreeTableFormatFactory, String> parameter)
+                                                -> parameter.getValue().getValue().getLabelProperty());
+        tripContent.setCellValueFactory((TreeTableColumn.CellDataFeatures<TreeTableFormatFactory, String> parameter)
+                                                -> parameter.getValue().getValue().getDescriptionProperty());
 
         tripsTree.setShowRoot(false);
         tripsTree.setRoot(root);

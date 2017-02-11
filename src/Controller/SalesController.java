@@ -96,7 +96,7 @@ public class SalesController implements Initializable {
         );
 
         if (salesObservableList.size() > 0) {
-            showSaleInfo(salesObservableList.get(0));
+            salesTableView.getSelectionModel().select(0);
         }
     }
 
@@ -157,7 +157,7 @@ public class SalesController implements Initializable {
 
     @FXML
     private void handleButtonEditSale() {
-        Sale originalSale = chosenSale.copy();
+        Sale originalSale = chosenSale.createCopy();
         Sale editedSale = showSaleView(chosenSale);
 
         if (editedSale != null) {
