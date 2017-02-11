@@ -39,7 +39,7 @@ public class SaleDAO {
         } catch (SQLException | NullPointerException e) {
             Dialog.displayErrorDialog(ErrorDescriptions.DATABASE_ERROR);
         } finally {
-            DatabaseUtil.closeResultSet(resultSet);
+            DatabaseUtil.closeResultSetAndConnectedStatement(resultSet);
         }
 
         return salesObservableList;
