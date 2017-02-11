@@ -5,7 +5,7 @@ import javafx.scene.control.Alert;
 public class Dialog {
 
     public static void displayErrorDialog(String header){
-        displayErrorDialog(header, null);
+        displayErrorDialog(header, "");
     }
 
     public static void displayErrorDialog(String header, String description){
@@ -19,7 +19,7 @@ public class Dialog {
     }
 
     public static void displayInfoDialog(String header){
-        displayErrorDialog(header, null);
+        displayErrorDialog(header, "");
     }
 
     public static void displayInfoDialog(String header, String description){
