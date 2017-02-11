@@ -53,18 +53,13 @@ public class DatabaseUtil {
         connection.rollback();
     }
 
-    public static void closeStatement(Statement statement){
+    public static void closeResultSetAndConnectedStatement(ResultSet resultSet){
         try {
-            statement.close();
-        } catch (SQLException e) {
+            Statement localStatement = resultSet.getStatement();
 
-        }
-    }
-
-    public static void closeResultSet(ResultSet resultSet){
-        try {
             resultSet.close();
-        } catch (SQLException e) {
+            localStatement.close();
+        } catch (SQLException e){
 
         }
     }
@@ -102,8 +97,7 @@ public class DatabaseUtil {
             e.printStackTrace();
             return ERROR;
         } finally {
-            closeResultSet(resultSet);
-            closeStatement(statement);
+            closeResultSetAndConnectedStatement(resultSet);
         }
 
         return 1;
