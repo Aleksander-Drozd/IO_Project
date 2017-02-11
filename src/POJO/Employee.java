@@ -48,4 +48,25 @@ public class Employee {
     public void setPosition(String position) {
         this.position = position;
     }
+
+    public Employee copy() {
+        Employee employee = new Employee();
+
+        employee.setId(this.id);
+        employee.setFirstName(this.firstName);
+        employee.setLastName(this.lastName);
+        employee.setPosition(this.position);
+
+        return employee;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", position='" + position + '\'' +
+                '}';
+    }
 }

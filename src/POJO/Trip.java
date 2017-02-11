@@ -24,11 +24,6 @@ public class Trip {
         date = new Date();
     }
 
-    @Override
-    public String toString() {
-        return  title;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -75,5 +70,23 @@ public class Trip {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Trip copy() {
+        Trip trip = new Trip();
+
+        trip.setId(this.id);
+        trip.setTitle(this.title);
+        trip.setDescription(this.description);
+        trip.setPrice(this.price);
+        trip.setDate(this.date);
+        trip.setDays(this.days);
+
+        return trip;
+    }
+
+    @Override
+    public String toString() {
+        return  title;
     }
 }

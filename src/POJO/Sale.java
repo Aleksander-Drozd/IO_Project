@@ -1,5 +1,7 @@
 package POJO;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class Sale {
@@ -93,5 +95,32 @@ public class Sale {
 
     public void setSaleDate(Date saleDate) {
         this.saleDate = saleDate;
+    }
+
+    public Sale copy() {
+        Sale sale = new Sale();
+
+        sale.setEmployee(this.employee.copy());
+        sale.setTrip(this.trip.copy());
+        sale.setCustomer(this.customer.copy());
+        sale.setQuantity(this.quantity);
+        sale.setSaleDate(this.saleDate);
+        sale.setSaleId(this.saleId);
+
+        return sale;
+    }
+
+    @Override
+    public String toString() {
+        return "Sale{" +
+                "saleId=" + saleId +
+                ", employee=" + employee +
+                ", trip=" + trip +
+                ", customer=" + customer +
+                ", quantity=" + quantity +
+                ", lastName='" + lastName + '\'' +
+                ", tripTitle='" + tripTitle + '\'' +
+                ", saleDate=" + saleDate +
+                '}';
     }
 }

@@ -95,4 +95,33 @@ public class Customer {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public Customer copy() {
+        Customer customer = new Customer();
+
+        customer.setId(this.id);
+        customer.setFirstName(this.firstName);
+        customer.setLastName(this.lastName);
+        customer.setCity(this.city);
+        customer.setPostCode(this.postCode);
+        customer.setStreet(this.street);
+        customer.setPhoneNumber(this.phoneNumber);
+        customer.setGender(this.gender);
+
+        return customer;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", postCode='" + postCode + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }
