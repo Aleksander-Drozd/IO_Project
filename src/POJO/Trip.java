@@ -72,7 +72,7 @@ public class Trip {
         this.id = id;
     }
 
-    public Trip copy() {
+    public Trip createCopy() {
         Trip trip = new Trip();
 
         trip.setId(this.id);

@@ -1,7 +1,5 @@
 package POJO;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 
 public class Sale {
@@ -97,12 +95,12 @@ public class Sale {
         this.saleDate = saleDate;
     }
 
-    public Sale copy() {
+    public Sale createCopy() {
         Sale sale = new Sale();
 
-        sale.setEmployee(this.employee.copy());
-        sale.setTrip(this.trip.copy());
-        sale.setCustomer(this.customer.copy());
+        sale.setEmployee(this.employee.createCopy());
+        sale.setTrip(this.trip.createCopy());
+        sale.setCustomer(this.customer.createCopy());
         sale.setQuantity(this.quantity);
         sale.setSaleId(this.saleId);
 

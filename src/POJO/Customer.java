@@ -96,7 +96,7 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     }
 
-    public Customer copy() {
+    public Customer createCopy() {
         Customer customer = new Customer();
 
         customer.setId(this.id);

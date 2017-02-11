@@ -49,7 +49,7 @@ public class Employee {
         this.position = position;
     }
 
-    public Employee copy() {
+    public Employee createCopy() {
         Employee employee = new Employee();
 
         employee.setId(this.id);
