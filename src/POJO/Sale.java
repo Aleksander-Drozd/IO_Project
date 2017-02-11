@@ -104,8 +104,11 @@ public class Sale {
         sale.setTrip(this.trip.copy());
         sale.setCustomer(this.customer.copy());
         sale.setQuantity(this.quantity);
-        sale.setSaleDate(this.saleDate);
         sale.setSaleId(this.saleId);
+
+        sale.setLastName(this.lastName);
+        sale.setTripTitle(this.tripTitle);
+        sale.setSaleDate(this.saleDate);
 
         return sale;
     }

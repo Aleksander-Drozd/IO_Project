@@ -34,8 +34,10 @@ public class SaleModel {
         }
     }
 
-    public void updateSale(Sale sale) {
-        if(!saleDAO.updateSale(sale)) {
+    public void updateSale(Sale originalSale, Sale editedSale) {
+        if(!saleDAO.updateSale(editedSale)) {
+            salesObservableList.remove(editedSale);
+            salesObservableList.add(originalSale);
             Dialog.displayErrorDialog(ErrorDescriptions.DATABASE_ERROR, null);
         }
     }

@@ -157,10 +157,11 @@ public class SalesController implements Initializable {
 
     @FXML
     private void handleButtonEditSale() {
+        Sale originalSale = chosenSale.copy();
         Sale editedSale = showSaleView(chosenSale);
 
         if (editedSale != null) {
-            saleModel.updateSale(editedSale);
+            saleModel.updateSale(originalSale, editedSale);
         }
     }
 
@@ -168,8 +169,9 @@ public class SalesController implements Initializable {
     private void handleButtonAddSale() {
         Sale newSale = showSaleView(null);
 
-        if (newSale != null)
+        if (newSale != null) {
             saleModel.addSale(newSale);
+        }
     }
 
 }
