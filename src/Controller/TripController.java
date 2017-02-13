@@ -56,13 +56,21 @@ public class TripController implements Initializable {
         validateData();
 
         if (correctData) {
-
+            updateGotTrip();
         }
     }
 
     @FXML
     private void closeView() {
         System.out.println("Close view!");
+    }
+
+    private void updateGotTrip() {
+        trip.setTitle( title.getText() );
+        trip.setDescription( description.getText() );
+        trip.setDays( Integer.parseInt(days.getText()) );
+        trip.setPrice( Float.parseFloat(price.getText()) );
+        trip.setDate( Date.from( Instant.from( date.getValue().atStartOfDay(ZoneId.systemDefault()) ) ));
     }
 
     private void validateData() {
