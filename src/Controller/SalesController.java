@@ -121,6 +121,10 @@ public class SalesController implements Initializable {
         }
     }
 
+    private Sale showSaleView(){
+        return showSaleView(null);
+    }
+
     private Sale showSaleView(Sale sale){
         Stage dataSaleStage = new Stage();
 
@@ -167,7 +171,7 @@ public class SalesController implements Initializable {
 
     @FXML
     private void handleButtonAddSale() {
-        Sale newSale = showSaleView(null);
+        Sale newSale = showSaleView();
 
         if (newSale != null) {
             saleModel.addSale(newSale);
