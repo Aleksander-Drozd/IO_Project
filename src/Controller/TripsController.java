@@ -5,12 +5,19 @@ import POJO.Trip;
 import Util.TreeTableFormatFactory;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class TripsController implements Initializable {
@@ -57,7 +64,33 @@ public class TripsController implements Initializable {
 
     @FXML
     private void handleButtonAddTrip() {
-        System.out.println("Add!");
+        showTripView(new Trip());
+
+    }
+
+    private void showTripView(Trip trip) {
+        Stage dataTripStage = new Stage();
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../View/TripView.fxml"));
+
+            BorderPane layout = loader.load();
+
+            Scene scene = new Scene(layout);
+            TripController tripController = loader.getController();
+
+            dataTripStage.setScene(scene);
+            dataTripStage.initModality(Modality.APPLICATION_MODAL);
+            dataTripStage.initOwner(tripsTree.getScene().getWindow());
+            dataTripStage.setTitle("Wycieczka");
+
+            dataTripStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
