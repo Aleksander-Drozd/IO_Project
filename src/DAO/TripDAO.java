@@ -70,6 +70,21 @@ public class TripDAO {
         return true;
     }
 
+    public boolean updateTrip(Trip trip){
+        String updateTripQuery = "UPDATE trips SET " +
+                "title = '" + trip.getTitle() + "', " +
+                "description = '" + trip.getDescription() + "', " +
+                "days = '" + trip.getDays() + "', " +
+                "price = '" + trip.getPrice() + "', " +
+                "date = '" + trip.getDate() + "' " +
+                "WHERE id = '" + trip.getId() + "';";
+
+        if (DatabaseUtil.update(updateTripQuery) == DatabaseUtil.ERROR)
+            return false;
+
+        return true;
+    }
+
     private Trip createTrip(ResultSet resultSet) throws SQLException{
         Trip trip = new Trip();
 
