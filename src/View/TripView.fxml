@@ -47,8 +47,8 @@
             </GridPane>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button mnemonicParsing="false" text="Zapisz" />
-                  <Button mnemonicParsing="false" text="Anuluj">
+                  <Button defaultButton="true" mnemonicParsing="false" onAction="#saveTrip" text="Zapisz" />
+                  <Button cancelButton="true" mnemonicParsing="false" onAction="#closeView" text="Anuluj">
                      <HBox.margin>
                         <Insets left="50.0" />
                      </HBox.margin>
