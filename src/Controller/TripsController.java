@@ -85,6 +85,8 @@ public class TripsController implements Initializable {
             dataTripStage.initOwner(tripsTree.getScene().getWindow());
             dataTripStage.setTitle("Wycieczka");
 
+            tripController.setTrip(trip);
+
             dataTripStage.showAndWait();
 
         } catch (IOException e) {
