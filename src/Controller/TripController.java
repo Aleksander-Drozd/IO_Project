@@ -5,11 +5,14 @@ import POJO.Trip;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.time.DateTimeException;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -28,6 +31,7 @@ public class TripController implements Initializable {
 
     private Trip trip;
     private boolean correctData = true;
+    private boolean dataToSave = false;
 
 
     @Override
@@ -42,7 +46,12 @@ public class TripController implements Initializable {
         description.setText( trip.getDescription() );
         days.setText( tripDays != 0 ? Integer.toString(tripDays) : "" );
         price.setText( tripPrice != 0.0f ? Float.toString(tripPrice) : "" );
-        date.setValue( trip.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate() );
+
+        try {
+            date.setValue( LocalDate.parse(trip.getDate().toString()) );
+        } catch (DateTimeParseException e) {
+            date.setValue( LocalDate.now() );
+        }
     }
 
     public void setTrip(Trip trip) {
@@ -51,18 +60,33 @@ public class TripController implements Initializable {
         showTripData();
     }
 
+    public Trip getTrip() {
+        return trip;
+    }
+
     @FXML
     private void saveTrip() {
         validateData();
 
         if (correctData) {
             updateGotTrip();
+            dataToSave = true;
+            closeStage();
         }
     }
 
     @FXML
     private void closeView() {
-        System.out.println("Close view!");
+        closeStage();
+    }
+
+    private void closeStage() {
+        Stage stage = (Stage) title.getScene().getWindow();
+        stage.close();
+    }
+
+    public boolean isDataToSave() {
+        return dataToSave;
     }
 
     private void updateGotTrip() {

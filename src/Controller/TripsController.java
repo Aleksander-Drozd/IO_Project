@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class TripsController implements Initializable {
@@ -65,7 +64,16 @@ public class TripsController implements Initializable {
     @FXML
     private void handleButtonAddTrip() {
         showTripView(new Trip());
+    }
 
+    @FXML
+    private void handleButtonEditTrip() {
+        TreeItem<TreeTableFormatFactory> selectedItem = tripsTree.getSelectionModel().getSelectedItem();
+
+        if (selectedItem != null) {
+            System.out.println();
+            showTripView((Trip)selectedItem.getValue().getConnectedObject());
+        }
     }
 
     private void showTripView(Trip trip) {
@@ -89,21 +97,19 @@ public class TripsController implements Initializable {
 
             dataTripStage.showAndWait();
 
+            if (tripController.isDataToSave()) {
+                // TODO check if trip existing (for edit or add) and save/update it in db
+                // TODO need update TreeTable
+                System.out.println( tripController.getTrip() );
+            } else {
+                System.out.println( "Nie zapisano!" );
+            }
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-    }
-
-    @FXML
-    private void handleButtonEditTrip() {
-        TreeItem<TreeTableFormatFactory> selectedItem = tripsTree.getSelectionModel().getSelectedItem();
-
-        if (selectedItem != null) {
-            // TODO getConnectedObject return trip to edit - make function like add/edit in Sale
-            System.out.println(selectedItem.getValue().getConnectedObject());
-            System.out.println("Edit!");
-        }
     }
 
 }
