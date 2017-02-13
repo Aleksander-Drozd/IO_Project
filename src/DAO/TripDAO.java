@@ -50,6 +50,26 @@ public class TripDAO {
         return trip;
     }
 
+    public boolean addTrip(Trip trip){
+        int tripId;
+
+        String insertTripQuery = "INSERT INTO trips (title, description, days, price, date VALUES('" +
+                trip.getTitle() + "', '" +
+                trip.getDescription() + "', '" +
+                trip.getDays() + "', '" +
+                trip.getPrice() + "', '" +
+                trip.getDate().toString() + "');";
+
+        tripId = DatabaseUtil.update(insertTripQuery);
+
+        if (tripId == DatabaseUtil.ERROR)
+            return false;
+
+        trip.setId(tripId);
+
+        return true;
+    }
+
     private Trip createTrip(ResultSet resultSet) throws SQLException{
         Trip trip = new Trip();
 
