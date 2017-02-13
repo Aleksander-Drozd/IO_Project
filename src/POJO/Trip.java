@@ -13,7 +13,12 @@ public class Trip {
     private Date date;
 
     public Trip(){
-
+        id = -1;
+        title = "";
+        description = "";
+        days = 0;
+        price = 0.0f;
+        date = new Date();
     }
 
     public Trip(String forTests) {
