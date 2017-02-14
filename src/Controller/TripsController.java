@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class TripsController implements Initializable {
@@ -111,11 +112,23 @@ public class TripsController implements Initializable {
 
     private void saveTrip( Trip trip ) {
         tripModel.saveTrip(trip);
-//        if (tripModel.contains(trip)) {
-//            updateTripInTable();
-//        } else {
-//            addTripToTable();
-//        }
+        updateTripInTable(trip);
+    }
+
+    private void updateTripInTable(Trip trip) {
+        TreeItem<TreeTableFormatFactory> newTreeItem = generateTreeItem(trip);
+        ObservableList<TreeItem<TreeTableFormatFactory>> rootItemChildren = tripsTree.getRoot().getChildren();
+
+        for (TreeItem<TreeTableFormatFactory> item: rootItemChildren) {
+            if ( item.getValue().getConnectedObject() == trip ) {
+                rootItemChildren.remove(item);
+                break;
+            }
+        }
+
+        rootItemChildren.add(newTreeItem);
+        rootItemChildren.sort( Comparator.comparing(item -> item.getValue().getLabelProperty().getValue()) );
+        tripsTree.refresh();
     }
 
 }
