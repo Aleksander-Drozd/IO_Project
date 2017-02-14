@@ -22,11 +22,27 @@ public class TripModel {
         return tripsObservableList;
     }
 
-    public boolean addTrip(Trip trip){
-        tripsObservableList.add(trip);
-
-        //TODO Add trip to Database
-        return true;
+    public boolean saveTrip(Trip trip){
+        if (!tripsObservableList.contains(trip)) {
+            return addTrip(trip);
+        } else {
+            return updateTrip(trip);
+        }
     }
 
+    private boolean addTrip(Trip trip) {
+        if (tripDAO.addTrip(trip)) {
+            tripsObservableList.add(trip);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean updateTrip(Trip trip) {
+        return tripDAO.updateTrip(trip);
+    }
+
+    public boolean contains(Trip trip) {
+        return tripsObservableList.contains(trip);
+    }
 }

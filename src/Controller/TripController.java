@@ -94,7 +94,7 @@ public class TripController implements Initializable {
         trip.setDescription( description.getText() );
         trip.setDays( Integer.parseInt(days.getText()) );
         trip.setPrice( Float.parseFloat(price.getText()) );
-        trip.setDate( Date.from( Instant.from( date.getValue().atStartOfDay(ZoneId.systemDefault()) ) ));
+        trip.setDate(java.sql.Date.valueOf(date.getValue()));
     }
 
     private void validateData() {

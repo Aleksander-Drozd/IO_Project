@@ -71,7 +71,6 @@ public class TripsController implements Initializable {
         TreeItem<TreeTableFormatFactory> selectedItem = tripsTree.getSelectionModel().getSelectedItem();
 
         if (selectedItem != null) {
-            System.out.println();
             showTripView((Trip)selectedItem.getValue().getConnectedObject());
         }
     }
@@ -97,10 +96,8 @@ public class TripsController implements Initializable {
 
             dataTripStage.showAndWait();
 
-            if (tripController.isDataToSave()) {
-                // TODO check if trip existing (for edit or add) and save/update it in db
-                // TODO need update TreeTable
-                System.out.println( tripController.getTrip() );
+            if ( tripController.isDataToSave() ) {
+                saveTrip( tripController.getTrip() );
             } else {
                 System.out.println( "Nie zapisano!" );
             }
@@ -110,6 +107,15 @@ public class TripsController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    private void saveTrip( Trip trip ) {
+        tripModel.saveTrip(trip);
+//        if (tripModel.contains(trip)) {
+//            updateTripInTable();
+//        } else {
+//            addTripToTable();
+//        }
     }
 
 }

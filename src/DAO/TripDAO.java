@@ -53,12 +53,12 @@ public class TripDAO {
     public boolean addTrip(Trip trip){
         int tripId;
 
-        String insertTripQuery = "INSERT INTO trips (title, description, days, price, date VALUES('" +
+        String insertTripQuery = "INSERT INTO trips (title, description, days, price, date) VALUES('" +
                 trip.getTitle() + "', '" +
                 trip.getDescription() + "', '" +
                 trip.getDays() + "', '" +
                 trip.getPrice() + "', '" +
-                trip.getDate().toString() + "');";
+                trip.getDate().toString() + "'); ";
 
         tripId = DatabaseUtil.update(insertTripQuery);
 
