@@ -18,7 +18,7 @@
    <center>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="salesTableView" prefHeight="400.0" prefWidth="262.0">
+            <TableView fx:id="salesTableView" prefHeight="400.0" prefWidth="262.0" styleClass="disabled-focus-border" stylesheets="@../Stylesheets/main.css">
               <columns>
                 <TableColumn fx:id="lastNameTableColumn" prefWidth="75.0" text="Nazwisko" />
                 <TableColumn fx:id="tripTitleTableColumn" prefWidth="85.0" text="Wycieczka" />
@@ -160,6 +160,7 @@
                            <children>
                               <Label fx:id="tripTitleLabel" text="Nazwa wycieczki" GridPane.halignment="CENTER" />
                               <TextArea fx:id="tripDescriptionTextArea" wrapText="true" editable="false" prefHeight="79.0" prefWidth="199.0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                              <TextArea fx:id="tripDescriptionTextArea" editable="false" prefHeight="79.0" prefWidth="199.0" wrapText="true" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                               <Label text="Data wycieczki:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                                  <GridPane.margin>
                                     <Insets right="5.0" />

@@ -9,3 +9,8 @@
     -fx-color: red;
 }
 
+.disabled-focus-border{
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
