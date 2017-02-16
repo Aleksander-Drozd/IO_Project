@@ -26,7 +26,9 @@
           </Tab>
             <Tab text="Statystyki">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" >
+                    <fx:include fx:id="statisticsPane" source="StatisticsView.fxml"/>
+                </AnchorPane>
               </content>
             </Tab>
         </tabs>
