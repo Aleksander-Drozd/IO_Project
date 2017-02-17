@@ -18,12 +18,12 @@
          <VBox prefHeight="375.0" prefWidth="241.0">
             <Label text="Dostępne wykresy">
                <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <ListView prefHeight="328.0" prefWidth="221.0">
+            <ListView fx:id="chartSchemesList" prefHeight="328.0" prefWidth="221.0">
                <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0"/>
+                  <Insets bottom="10.0" left="10.0" right="10.0" />
                </VBox.margin>
             </ListView>
          </VBox>
@@ -31,33 +31,33 @@
             <VBox layoutX="-2.0" prefHeight="308.0" prefWidth="363.0">
                <Label text="Zakres czasowy">
                   <VBox.margin>
-                     <Insets left="10.0" right="10.0" top="10.0"/>
+                     <Insets left="10.0" right="10.0" top="10.0" />
                   </VBox.margin>
                </Label>
                <HBox prefHeight="40.0" prefWidth="363.0">
-                  <TextField prefHeight="25.0" prefWidth="42.0">
+                  <TextField fx:id="numberOfScopes" prefHeight="25.0" prefWidth="42.0">
                      <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <ChoiceBox prefHeight="25.0" prefWidth="80.0">
+                  <ChoiceBox fx:id="scopeType" prefHeight="25.0" prefWidth="80.0">
                      <HBox.margin>
-                        <Insets bottom="10.0" right="10.0" top="10.0"/>
+                        <Insets bottom="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
                   </ChoiceBox>
                </HBox>
                <Label text="Dokładność">
                   <VBox.margin>
-                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                   </VBox.margin>
                </Label>
-               <HBox prefHeight="100.0" prefWidth="200.0">
-                  <TextField prefHeight="25.0" prefWidth="42.0">
+               <HBox prefHeight="44.0" prefWidth="363.0">
+                  <TextField fx:id="numberOfAccuracy" prefHeight="25.0" prefWidth="42.0">
                      <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0"/>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <ChoiceBox prefHeight="25.0" prefWidth="80.0"/>
+                  <ChoiceBox fx:id="accuracyType" prefHeight="25.0" prefWidth="80.0" />
                </HBox>
             </VBox>
          </Pane>
@@ -66,26 +66,25 @@
    <bottom>
       <HBox prefHeight="93.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <HBox prefHeight="93.0" prefWidth="419.0">
-            <RadioButton mnemonicParsing="false" text="Słupkowy">
+            <RadioButton fx:id="barChart" mnemonicParsing="false" text="Słupkowy">
                <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" text="Liniowy">
+            <RadioButton fx:id="lineChart" mnemonicParsing="false" text="Liniowy">
                <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </RadioButton>
-            <RadioButton mnemonicParsing="false" text="Kołowy">
+            <RadioButton fx:id="pieChart" mnemonicParsing="false" text="Kołowy">
                <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </RadioButton>
          </HBox>
-         <Button mnemonicParsing="false" onAction="#handleChartButton" prefHeight="68.0" prefWidth="147.0"
-                 style="-fx-background-color: #00bf00" text="Generuj wykres!">
+         <Button mnemonicParsing="false" onAction="#handleChartButton" prefHeight="68.0" prefWidth="147.0" style="-fx-background-color: #00bf00" text="Generuj wykres!">
             <HBox.margin>
-               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </HBox.margin>
          </Button>
       </HBox>
