@@ -2,10 +2,7 @@ package Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.Chart;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
@@ -21,4 +18,7 @@ public class ChartController implements Initializable{
 
     }
 
+    public void setChart(Chart chart) {
+        mainContent.setCenter(chart);
+    }
 }
