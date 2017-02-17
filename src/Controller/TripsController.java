@@ -2,7 +2,7 @@ package Controller;
 
 import Model.TripModel;
 import POJO.Trip;
-import Util.TreeTableFormatFactory;
+import Util.TreeTableFormat;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,11 +23,11 @@ import java.util.ResourceBundle;
 public class TripsController implements Initializable {
 
     @FXML
-    private TreeTableColumn<TreeTableFormatFactory,String> tripLabel;
+    private TreeTableColumn<TreeTableFormat,String> tripLabel;
     @FXML
-    private TreeTableColumn<TreeTableFormatFactory,String> tripContent;
+    private TreeTableColumn<TreeTableFormat,String> tripContent;
     @FXML
-    private TreeTableView<TreeTableFormatFactory> tripsTree;
+    private TreeTableView<TreeTableFormat> tripsTree;
 
     private TripModel tripModel;
 
@@ -38,27 +38,27 @@ public class TripsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<Trip> trips = tripModel.getTrips();
-        TreeItem<TreeTableFormatFactory> root = new TreeItem<>(new TreeTableFormatFactory("","", null));
+        TreeItem<TreeTableFormat> root = new TreeItem<>(new TreeTableFormat("","", null));
 
         for (Trip trip: trips) {
             root.getChildren().add(generateTreeItem(trip));
         }
 
-        tripLabel.setCellValueFactory((TreeTableColumn.CellDataFeatures<TreeTableFormatFactory, String> parameter)
+        tripLabel.setCellValueFactory((TreeTableColumn.CellDataFeatures<TreeTableFormat, String> parameter)
                                                 -> parameter.getValue().getValue().getLabelProperty());
-        tripContent.setCellValueFactory((TreeTableColumn.CellDataFeatures<TreeTableFormatFactory, String> parameter)
+        tripContent.setCellValueFactory((TreeTableColumn.CellDataFeatures<TreeTableFormat, String> parameter)
                                                 -> parameter.getValue().getValue().getDescriptionProperty());
 
         tripsTree.setShowRoot(false);
         tripsTree.setRoot(root);
     }
 
-    private TreeItem<TreeTableFormatFactory> generateTreeItem(Trip trip) {
-        TreeItem<TreeTableFormatFactory> root = new TreeItem<>(new TreeTableFormatFactory(trip.getTitle(), "", trip));
-        root.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Opis", trip.getDescription(), trip)));
-        root.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Ilosc dni", Integer.toString(trip.getDays()), trip)));
-        root.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Cena", Float.toString(trip.getPrice()), trip)));
-        root.getChildren().add(new TreeItem<>(new TreeTableFormatFactory("Data", trip.getDate().toString(), trip)));
+    private TreeItem<TreeTableFormat> generateTreeItem(Trip trip) {
+        TreeItem<TreeTableFormat> root = new TreeItem<>(new TreeTableFormat(trip.getTitle(), "", trip));
+        root.getChildren().add(new TreeItem<>(new TreeTableFormat("Opis", trip.getDescription(), trip)));
+        root.getChildren().add(new TreeItem<>(new TreeTableFormat("Ilosc dni", Integer.toString(trip.getDays()), trip)));
+        root.getChildren().add(new TreeItem<>(new TreeTableFormat("Cena", Float.toString(trip.getPrice()), trip)));
+        root.getChildren().add(new TreeItem<>(new TreeTableFormat("Data", trip.getDate().toString(), trip)));
         return root;
     }
 
@@ -69,7 +69,7 @@ public class TripsController implements Initializable {
 
     @FXML
     private void handleButtonEditTrip() {
-        TreeItem<TreeTableFormatFactory> selectedItem = tripsTree.getSelectionModel().getSelectedItem();
+        TreeItem<TreeTableFormat> selectedItem = tripsTree.getSelectionModel().getSelectedItem();
 
         if (selectedItem != null) {
             showTripView((Trip)selectedItem.getValue().getConnectedObject());
@@ -116,10 +116,10 @@ public class TripsController implements Initializable {
     }
 
     private void updateTripInTable(Trip trip) {
-        TreeItem<TreeTableFormatFactory> newTreeItem = generateTreeItem(trip);
-        ObservableList<TreeItem<TreeTableFormatFactory>> rootItemChildren = tripsTree.getRoot().getChildren();
+        TreeItem<TreeTableFormat> newTreeItem = generateTreeItem(trip);
+        ObservableList<TreeItem<TreeTableFormat>> rootItemChildren = tripsTree.getRoot().getChildren();
 
-        for (TreeItem<TreeTableFormatFactory> item: rootItemChildren) {
+        for (TreeItem<TreeTableFormat> item: rootItemChildren) {
             if ( item.getValue().getConnectedObject() == trip ) {
                 rootItemChildren.remove(item);
                 break;
