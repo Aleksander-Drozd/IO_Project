@@ -21,7 +21,7 @@ public class StatisticController {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../View/BarChartView.fxml"));
+            loader.setLocation(getClass().getResource("../View/ChartView.fxml"));
 
             BorderPane layout = loader.load();
 
