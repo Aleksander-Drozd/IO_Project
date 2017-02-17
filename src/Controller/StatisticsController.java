@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.StatisticModel;
+import Util.ChartDataEntity;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,13 +11,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
-public class StatisticController {
+public class StatisticsController {
 
     private StatisticModel statisticModel;
 
     @FXML
-    private void handleBarChartButton(){
+    private void handleChartButton(){
+
+
+        //List<ChartDataEntity> list = statisticModel.getDataForChart(  );
+
+
         Stage dataSaleStage = new Stage();
 
         try {
