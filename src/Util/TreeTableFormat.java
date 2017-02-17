@@ -3,13 +3,13 @@ package Util;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class TreeTableFormatFactory {
+public class TreeTableFormat {
 
     private StringProperty labelProperty;
     private StringProperty descriptionProperty;
     private Object connectedObject;
 
-    public TreeTableFormatFactory(String label, String description, Object connectedObject) {
+    public TreeTableFormat(String label, String description, Object connectedObject) {
         labelProperty = new SimpleStringProperty(label);
         descriptionProperty = new SimpleStringProperty(description);
 
