@@ -118,7 +118,7 @@ public class SaleController implements Initializable{
         sale.setEmployee(EmployeeDAO.getLoggedEmployee());
         sale.setLastName(customer.getLastName());
         sale.setTripTitle(tripComboBox.getValue().getTitle());
-        sale.setSaleDate(Date.valueOf(saleDatePicker.getValue()));
+        sale.setSaleDate(saleDatePicker.getValue());
         sale.setCustomer(customer);
     }
 

@@ -66,7 +66,7 @@ public class SaleDAO {
         sale.setQuantity(resultSet.getInt("quantity"));
         sale.setLastName(customer.getLastName());
         sale.setTripTitle(trip.getTitle());
-        sale.setSaleDate(resultSet.getDate("date"));
+        sale.setSaleDate(resultSet.getDate("date").toLocalDate());
 
         return sale;
     }

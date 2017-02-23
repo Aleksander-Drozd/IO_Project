@@ -1,6 +1,6 @@
 package POJO;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Sale {
 
@@ -14,20 +14,20 @@ public class Sale {
     // Data to TableView
     private String lastName;
     private String tripTitle;
-    private Date saleDate;
+    private LocalDate saleDate;
 
     public Sale(){
         employee = new Employee("");
         trip = new Trip("");
         customer = new Customer("");
-        saleDate = new Date();
+        saleDate = LocalDate.now();
     }
 
     public Sale(String forTests) {
         employee = new Employee("");
         trip = new Trip("");
         customer = new Customer("");
-        saleDate = new Date();
+        saleDate =  LocalDate.now();
     }
 
     public int getSaleId() {
@@ -91,7 +91,11 @@ public class Sale {
         return saleDate.toString();
     }
 
-    public void setSaleDate(Date saleDate) {
+    public LocalDate getSaleDateAsDate(){
+        return saleDate;
+    }
+
+    public void setSaleDate(LocalDate saleDate) {
         this.saleDate = saleDate;
     }
 
