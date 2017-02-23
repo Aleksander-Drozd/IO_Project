@@ -9,6 +9,7 @@ import Util.DateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -46,19 +47,11 @@ public class SalesSalesmanChartModel implements ChartConfigModel {
         scopeInDays = Integer.parseInt(config.get("scope")) * Integer.parseInt(config.get("scopeMultiplier"));
         accuracyInDays = Integer.parseInt(config.get("accuracy")) * Integer.parseInt(config.get("accuracyMultiplier"));
 
-        Date beginningDate = addDaysToDate(new Date(), -scopeInDays);
+        LocalDate beginningDate = LocalDate.now().minusDays(scopeInDays);
 
         System.out.println( "Employee id: " + employee.getId() );
-        System.out.println(DateUtil.toStandardString(beginningDate));
+        System.out.println(beginningDate);
 
         return count;
     }
-
-    private Date addDaysToDate(Date date, int days){
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        cal.add(Calendar.DATE, days);
-        return cal.getTime();
-    }
-
 }
