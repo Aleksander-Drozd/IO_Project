@@ -95,9 +95,8 @@ public class StatisticsController implements Initializable {
     }
 
     @FXML
-    private void handleChartButton(){
-        System.out.print("");
-        Map config = chartConfigController.getChartConfig();
+    private void handleShowChartButton(){
+        Map<String, String> config = chartConfigController.getChartConfig();
         config.put("type", chartType.toString());
         ObservableList<ChartDataEntity> list = statisticModel.getDataForChart(config);
 

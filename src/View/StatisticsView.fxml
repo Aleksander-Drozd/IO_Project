@@ -47,7 +47,7 @@
                </HBox.margin>
             </RadioButton>
          </HBox>
-         <Button mnemonicParsing="false" onAction="#handleChartButton" prefHeight="68.0" prefWidth="147.0" style="-fx-background-color: #00bf00" text="Generuj wykres!">
+         <Button mnemonicParsing="false" onAction="#handleShowChartButton" prefHeight="68.0" prefWidth="147.0" style="-fx-background-color: #00bf00" text="Generuj wykres!">
             <HBox.margin>
                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </HBox.margin>
