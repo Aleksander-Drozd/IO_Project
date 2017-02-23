@@ -6,6 +6,7 @@ import Util.ChartDataEntity;
 import Util.ChartType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -42,24 +43,18 @@ public class StatisticsController implements Initializable {
     private ChartConfigController chartConfigController;
     private StatisticModel statisticModel;
 
+    private ObservableMap<String, String> chartsTemplates;
+
     public StatisticsController() {
         chartTypeToggleGroup = new ToggleGroup();
         statisticModel = new StatisticModel();
+        chartsTemplates =  FXCollections.observableHashMap();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initChartTypeToggleGroup();
-
-        chartSchemesList.setItems(
-                FXCollections.observableArrayList("Julia", "Ian", "Sue", "Matthew", "Hannah", "Stephan", "Denise")
-        );
-
-        chartSchemesList.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> showChartConfigPane(newValue)
-        );
-
-        chartSchemesList.getSelectionModel().select(0);
+        initChartsTemplatesListView();
     }
 
     private void initChartTypeToggleGroup() {
@@ -76,6 +71,27 @@ public class StatisticsController implements Initializable {
                 chartType = ChartType.PIE_CHART;
             }
         });
+    }
+
+    private void initChartsTemplatesListView() {
+        ObservableList<String> chartsNames = createSortedChartsNamesList();
+
+        chartSchemesList.setItems(chartsNames);
+
+        chartSchemesList.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showChartConfigPane(chartsTemplates.get(newValue))
+        );
+
+        chartSchemesList.getSelectionModel().select(0);
+    }
+
+    private ObservableList<String> createSortedChartsNamesList() {
+        chartsTemplates.put("Ian", "Simple");
+        chartsTemplates.put("Sprzedaze pracownikow", "SalesSalesman");
+
+        ObservableList<String> chartsNames = FXCollections.observableArrayList(chartsTemplates.keySet());
+        chartsNames.sort(String::compareTo);
+        return chartsNames;
     }
 
     @FXML
@@ -97,7 +113,6 @@ public class StatisticsController implements Initializable {
 
             dataSaleStage.setScene(scene);
             dataSaleStage.initModality(Modality.APPLICATION_MODAL);
-//            dataSaleStage.initOwner(addSaleButton.getScene().getWindow());
             dataSaleStage.setTitle("Sprzedaz");
 
             dataSaleStage.showAndWait();
@@ -106,16 +121,18 @@ public class StatisticsController implements Initializable {
         }
     }
 
-    private void showChartConfigPane(String newValue) {
+    private void showChartConfigPane(String chartTemplate) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../View/SimpleChartConfig.fxml"));
+            loader.setLocation(getClass().getResource("../View/" + chartTemplate + "ChartConfig.fxml"));
 
             AnchorPane anchorPane = loader.load();
 
             chartConfigController = loader.getController();
 
-            chartConfig.getChildren().add( anchorPane );
+            chartConfig.getChildren().clear();
+            chartConfig.getChildren().add(anchorPane);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
