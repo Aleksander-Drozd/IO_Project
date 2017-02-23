@@ -21,6 +21,10 @@ public class DatabaseUtil {
         }
     }
 
+    public static PreparedStatement prepareStatement(String query) throws SQLException{
+        return connection.prepareStatement(query);
+    }
+
     public static ResultSet runSelectQuery(String query) {
         Statement statement = null;
         ResultSet resultSet = null;
