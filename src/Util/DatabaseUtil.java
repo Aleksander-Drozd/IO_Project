@@ -77,6 +77,14 @@ public class DatabaseUtil {
         }
     }
 
+    public static void closeStatemnt(Statement statement){
+        try {
+            statement.close();
+        } catch (SQLException e) {
+
+        }
+    }
+
     public static int update(String query){
         Statement statement = null;
         ResultSet resultSet = null;
