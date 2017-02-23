@@ -4,6 +4,6 @@ import java.util.Map;
 
 public interface ChartConfigController {
 
-    public Map getChartConfig();
+    public Map<String, String> getChartConfig();
 
 }
