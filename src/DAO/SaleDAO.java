@@ -138,8 +138,9 @@ public class SaleDAO {
         return true;
     }
 
+    //ToDo refactor
     public boolean updateSale(Sale sale) {
-        int gender, customerId;
+        int gender;
         Customer customer = sale.getCustomer();
 
         if (customer.getGender().equals("Male")) {
@@ -148,31 +149,46 @@ public class SaleDAO {
             gender = 0;
         }
 
-        String updateSaleQuery = "UPDATE sales SET "
-                + "trip_id = '" + sale.getTrip().getId() + "', "
-                + "quantity = '" + sale.getQuantity() + "', "
-                + "date = '" + sale.getSaleDate() + "' "
-                + "WHERE id = " + sale.getSaleId() + ";";
+        String updateSaleQuery = "UPDATE sales SET trip_id = ?, quantity = ?, date = ? WHERE id = ?;";
 
-        String updateCustomerQuery = "UPDATE customers SET "
-                + "first_name = '" + customer.getFirstName() + "', "
-                + "last_name = '" + customer.getLastName() + "', "
-                + "gender = '" + gender + "', "
-                + "city = '" + customer.getCity() + "', "
-                + "street = '" + customer.getStreet() + "', "
-                + "post_code = '" + customer.getPostCode() + "', "
-                + "phone_number = '" + customer.getPhoneNumber() + "' "
-                + "WHERE id = '" + customer.getId() + "';";
+        PreparedStatement updateSalePreparedStatement = null;
+        try {
+            updateSalePreparedStatement = DatabaseUtil.prepareStatement(updateSaleQuery);
+
+            updateSalePreparedStatement.setInt(1, sale.getTrip().getId());
+            updateSalePreparedStatement.setInt(2, sale.getQuantity());
+            updateSalePreparedStatement.setObject(3, sale.getSaleDateAsDate());
+            updateSalePreparedStatement.setInt(4, sale.getSaleId());
+        } catch (SQLException e) {
+
+        }
+
+        String updateCustomerQuery = "UPDATE customers SET first_name = ?, last_name = ?, gender = ?, city = ?, "
+                + "street = ?, post_code = ?, phone_number = ? WHERE id = ?;";
+
+        PreparedStatement updateCustomerPreparedStatement = null;
+        try {
+            updateCustomerPreparedStatement = DatabaseUtil.prepareStatement(updateCustomerQuery);
+
+            updateCustomerPreparedStatement.setString(1, customer.getFirstName());
+            updateCustomerPreparedStatement.setString(2, customer.getLastName());
+            updateCustomerPreparedStatement.setInt(3, gender);
+            updateCustomerPreparedStatement.setString(4, customer.getCity());
+            updateCustomerPreparedStatement.setString(5, customer.getStreet());
+            updateCustomerPreparedStatement.setString(6, customer.getPostCode());
+            updateCustomerPreparedStatement.setString(7, customer.getPhoneNumber());
+            updateCustomerPreparedStatement.setInt(8, customer.getId());
+        } catch (SQLException e) {
+
+        }
 
         try {
             DatabaseUtil.startTransaction();
 
-            if (DatabaseUtil.update(updateSaleQuery) == DatabaseUtil.ERROR || DatabaseUtil.update(updateCustomerQuery) == DatabaseUtil.ERROR) {
-                throw new SQLException();
-            }
+            updateSalePreparedStatement.executeUpdate();
+            updateCustomerPreparedStatement.executeUpdate();
 
             DatabaseUtil.endTransaction();
-
         } catch (SQLException e) {
             e.printStackTrace();
 
@@ -183,6 +199,9 @@ public class SaleDAO {
                 e.printStackTrace();
             }
             return false;
+        } finally {
+            DatabaseUtil.closeStatemnt(updateSalePreparedStatement);
+            DatabaseUtil.closeStatemnt(updateCustomerPreparedStatement);
         }
 
         return true;
