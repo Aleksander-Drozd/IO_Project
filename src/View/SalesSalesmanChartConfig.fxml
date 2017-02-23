@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane  xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ChartConfig.SalesSalesmanController">
+    <Pane prefHeight="307.0" prefWidth="361.0">
+        <VBox layoutX="-2.0" prefHeight="308.0" prefWidth="363.0">
+            <Label text="Zakres czasowy">
+                <VBox.margin>
+                    <Insets left="10.0" right="10.0" top="10.0" />
+                </VBox.margin>
+            </Label>
+            <HBox prefHeight="40.0" prefWidth="363.0">
+                <TextField fx:id="numberOfScopes" prefHeight="25.0" prefWidth="42.0">
+                    <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </HBox.margin>
+                </TextField>
+                <ComboBox fx:id="scopeType" prefHeight="39.0" prefWidth="142.0">
+                    <HBox.margin>
+                        <Insets bottom="10.0" right="10.0" top="10.0" />
+                    </HBox.margin>
+                </ComboBox>
+            </HBox>
+            <Label text="Dokładność">
+                <VBox.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </VBox.margin>
+            </Label>
+            <HBox prefHeight="44.0" prefWidth="363.0">
+                <TextField fx:id="numberOfAccuracy" prefHeight="25.0" prefWidth="42.0">
+                    <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                    </HBox.margin>
+                </TextField>
+                <ComboBox fx:id="accuracyType" prefHeight="39.0" prefWidth="142.0" />
+            </HBox>
+        </VBox>
+    </Pane>
+</AnchorPane>
