@@ -5,6 +5,8 @@ import Util.DatabaseUtil;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EmployeeDAO {
 
@@ -46,5 +48,26 @@ public class EmployeeDAO {
         employee.setPosition(resultSet.getString("position"));
 
         return employee;
+    }
+
+    public List<Employee> getEmployees() {
+        ResultSet resultSet;
+        List<Employee> employees = new ArrayList<>();
+
+        //TODO Mby method for this?
+        String SQL = "SELECT id, first_name, last_name, position FROM employee;";
+
+        resultSet = DatabaseUtil.runSelectQuery(SQL);
+        try {
+            while (resultSet.next()) {
+                employees.add(createEmployee(resultSet));
+            }
+        } catch (SQLException | NullPointerException e) {
+            e.printStackTrace();
+        } finally {
+            DatabaseUtil.closeResultSetAndConnectedStatement(resultSet);
+        }
+
+        return employees;
     }
 }
