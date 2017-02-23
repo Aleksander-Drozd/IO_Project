@@ -6,6 +6,10 @@ public class ChartDataEntity {
     private String name;
     private float value;
 
+    public ChartDataEntity(String name, float value) {
+        this.name = name;
+        this.value = value;
+    }
 
     public String getName() {
         return name;
