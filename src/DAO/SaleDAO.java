@@ -10,6 +10,7 @@ import Util.ErrorDescriptions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -27,12 +28,16 @@ public class SaleDAO {
 
     public ObservableList<Sale> getSales(){
         ObservableList<Sale> salesObservableList = FXCollections.observableArrayList();
-        ResultSet resultSet;
+        ResultSet resultSet = null;
 
-        String query = "SELECT * FROM sales WHERE employee_id='" + EmployeeDAO.getLoggedEmployee().getId() + "' ORDER BY date DESC;";
+        String query = "SELECT * FROM sales WHERE employee_id = ? ORDER BY date DESC;";
 
-        resultSet = DatabaseUtil.runSelectQuery(query);
         try {
+            PreparedStatement preparedStatement = DatabaseUtil.prepareStatement(query);
+
+            preparedStatement.setInt(1, EmployeeDAO.getLoggedEmployee().getId());
+            resultSet = preparedStatement.executeQuery();
+
             while (resultSet.next()) {
                 salesObservableList.add(createSale(resultSet));
             }
