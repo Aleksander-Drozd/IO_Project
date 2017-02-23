@@ -8,6 +8,6 @@ import java.util.Map;
 
 public interface ChartConfigModel {
 
-    public ObservableList<ChartDataEntity> getDataForChart(Map config);
+    public ObservableList<ChartDataEntity> getDataForChart(Map<String, String> config);
 
 }
