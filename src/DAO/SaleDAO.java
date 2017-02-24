@@ -1,5 +1,6 @@
 package DAO;
 
+import DAO.Filters.SaleDAOfilter;
 import POJO.Customer;
 import POJO.Employee;
 import POJO.Sale;
@@ -14,6 +15,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.StringJoiner;
 
 public class SaleDAO {
 
@@ -125,7 +130,7 @@ public class SaleDAO {
             DatabaseUtil.endTransaction();
         } catch (SQLException | NullPointerException e) {
             e.printStackTrace();
-            
+
             try {
                 DatabaseUtil.rollback();
                 DatabaseUtil.endTransaction();
@@ -230,4 +235,70 @@ public class SaleDAO {
 
         return numberOfSales;
     }
+
+    public Map<Integer, Integer> getEmployeesNumberOfSales(SaleDAOfilter filter) {
+        Map<Integer, Integer> resultMap = new HashMap<>();
+
+        StringJoiner filtersJoiner = new StringJoiner("AND");
+
+        //TODO check checked Employee
+        if (!filter.getEmployeesIds().isEmpty()) {
+            filtersJoiner.add(generateEmployeeQueryFilter(filter.getEmployeesIds()));
+        }
+        if (!filter.getTripsIds().isEmpty()) {
+            filtersJoiner.add(generateTripQueryFilter(filter.getTripsIds()));
+        }
+        if (filter.getBeginDate() != null) {
+            filtersJoiner.add(generateDateQueryFilter(filter.getBeginDate(), filter.getEndDate()));
+        }
+
+        String filterQuery = filtersJoiner.toString();
+
+        if (!filterQuery.isEmpty()) {
+            filterQuery = " WHERE" + filterQuery;
+        }
+
+        String query = "SELECT employee.Id AS Id, COUNT(sales.employee_id) AS Count " +
+                " FROM employee " +
+                " LEFT JOIN sales ON sales.employee_id = employee.id " +
+                filterQuery +
+                " GROUP BY employee.Id;";
+
+        ResultSet resultSet = DatabaseUtil.runSelectQuery(query);
+
+        try {
+            while(resultSet.next()) {
+                resultMap.put(
+                        resultSet.getInt("Id"),
+                        resultSet.getInt("Count"));
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DatabaseUtil.closeResultSetAndConnectedStatement(resultSet);
+        }
+
+        return resultMap;
+    }
+
+    private String generateEmployeeQueryFilter(List<Integer> employeesIds) {
+        StringJoiner filter = new StringJoiner(" OR ", " ( ", " ) ");
+        for (Integer id: employeesIds) {
+            filter.add("sales.employee_id = " + id);
+        }
+        return filter.toString();
+    }
+
+    private String generateTripQueryFilter(List<Integer> tripsIds) {
+        StringJoiner filter = new StringJoiner(" OR ", " ( ", " ) ");
+        for (Integer id: tripsIds) {
+            filter.add("sales.trip_id = " + id);
+        }
+        return filter.toString();
+    }
+
+    private String generateDateQueryFilter(LocalDate beginDate, LocalDate endDate) {
+       return " date BETWEEN '" + beginDate.toString() + "' AND '" + endDate.toString() +"' " ;
+    }
 }
+

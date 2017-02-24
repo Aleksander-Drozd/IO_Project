@@ -14,7 +14,7 @@ public class SaleDAOfilter {
     private LocalDate beginDate;
     private LocalDate endDate;
 
-    private SaleDAOfilter() {
+    public SaleDAOfilter() {
         employeesIds = new ArrayList<>();
         tripsIds = new ArrayList<>();
         beginDate = null;
