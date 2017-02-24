@@ -45,8 +45,11 @@ public class SalesSalesmanController implements Initializable, ChartConfigContro
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        scopeType.setItems(FXCollections.observableArrayList(multiplierType.keySet()));
-        accuracyType.setItems(FXCollections.observableArrayList(multiplierType.keySet()));
+        scopeType.setItems(FXCollections.observableArrayList(multiplierType.keySet()).sorted(String::compareTo));
+        accuracyType.setItems(FXCollections.observableArrayList(multiplierType.keySet()).sorted(String::compareTo));
+
+        scopeType.getSelectionModel().select(0);
+        accuracyType.getSelectionModel().select(0);
     }
 
     @Override
