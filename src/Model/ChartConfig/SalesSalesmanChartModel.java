@@ -47,10 +47,10 @@ public class SalesSalesmanChartModel implements ChartConfigModel {
         scopeInDays = Integer.parseInt(config.get("scope")) * Integer.parseInt(config.get("scopeMultiplier"));
         accuracyInDays = Integer.parseInt(config.get("accuracy")) * Integer.parseInt(config.get("accuracyMultiplier"));
 
-        LocalDate beginningDate = LocalDate.now().minusDays(scopeInDays);
+        LocalDate beginDate = LocalDate.now().minusDays(scopeInDays);
+        LocalDate endDate = LocalDate.now();
 
-        System.out.println( "Employee id: " + employee.getId() );
-        System.out.println(beginningDate);
+        count = saleDAO.getEmployeesNumberOfSales(employee.getId(), beginDate, endDate);
 
         return count;
     }

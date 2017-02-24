@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class SaleDAO {
 
@@ -205,5 +206,28 @@ public class SaleDAO {
         }
 
         return true;
+    }
+
+    public int getEmployeesNumberOfSales(int employeeId, LocalDate beginDate, LocalDate endDate){
+        String query = "SELECT count(*) FROM sales WHERE employee_id = ? AND date BETWEEN ? AND ?";
+        int numberOfSales = 0;
+
+        try {
+            PreparedStatement preparedStatement = DatabaseUtil.prepareStatement(query);
+
+            preparedStatement.setInt(1, employeeId);
+            preparedStatement.setObject(2, beginDate);
+            preparedStatement.setObject(3, endDate);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                numberOfSales = resultSet.getInt(1);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return numberOfSales;
     }
 }
