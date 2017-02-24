@@ -2,16 +2,14 @@ package Model.ChartConfig;
 
 
 import DAO.EmployeeDAO;
+import DAO.Filters.SaleDAOfilter;
 import DAO.SaleDAO;
 import POJO.Employee;
 import Util.ChartDataEntity;
-import Util.DateUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -42,6 +40,15 @@ public class SalesSalesmanChartModel implements ChartConfigModel {
     }
 
     private int getEmployeeSalesCount(Employee employee, Map<String, String> config) {
+        //count = saleDAO.getEmployeesNumberOfSales(employee.getId(), beginDate, endDate);
+        SaleDAOfilter filter = generateFilter(config);
+
+        saleDAO.getEmployeesNumberOfSales(filter);
+
+        return 0;
+    }
+
+    private SaleDAOfilter generateFilter(Map<String, String> config) {
         int count = 0, scopeInDays, accuracyInDays;
 
         scopeInDays = Integer.parseInt(config.get("scope")) * Integer.parseInt(config.get("scopeMultiplier"));
@@ -50,8 +57,7 @@ public class SalesSalesmanChartModel implements ChartConfigModel {
         LocalDate beginDate = LocalDate.now().minusDays(scopeInDays);
         LocalDate endDate = LocalDate.now();
 
-        count = saleDAO.getEmployeesNumberOfSales(employee.getId(), beginDate, endDate);
 
-        return count;
+        return new SaleDAOfilter().employeeId(2).employeeId(1).scopeBetweenDates(LocalDate.now().minusDays(200), LocalDate.now());
     }
 }
