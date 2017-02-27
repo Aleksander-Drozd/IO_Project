@@ -9,4 +9,8 @@ public class Validator {
 
     public static final String PHONE_NUMBER_REGEX = "^(\\d{3}( |-)){2}\\d{3}$";
 
+    public static final String TEXT_REGEX = "^[[:alpha:]]+$";
+
+    public static final String QUANTITY_NUMBER_REGEX = "^[1-9][0-9]?$";
+
 }
