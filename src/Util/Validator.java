@@ -1,6 +1,5 @@
 package Util;
 
-
 public class Validator {
 
     public static final String POST_CODE_REGEX = "^\\d{2}-\\d{3}$";
